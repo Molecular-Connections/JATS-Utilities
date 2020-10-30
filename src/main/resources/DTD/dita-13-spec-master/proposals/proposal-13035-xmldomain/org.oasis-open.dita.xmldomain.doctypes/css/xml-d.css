@@ -1,0 +1,37 @@
+/*
+==============================
+    XML elements. [xml-d]
+==============================
+*/
+
+*[class~="xml-d/xmlelem"]:before {
+    content: '<';
+}
+*[class~="xml-d/xmlelem"]:after {
+    content: '>';
+}
+
+*[class~="xml-d/parment"]:before {
+    content: '%';
+}
+
+*[class~="xml-d/textent"]:before {
+    content: '&';
+}
+
+*[class~="xml-d/numcharref"]:before {
+    content: '&#';
+}
+
+*[class~="xml-d/parment"]:after,
+*[class~="xml-d/textent"]:after,
+*[class~="xml-d/numcharref"]:after
+{
+    content: ';';
+}
+
+*[class~="xml-d/xmlatt"]:before {
+    content: '@';
+}
+
+

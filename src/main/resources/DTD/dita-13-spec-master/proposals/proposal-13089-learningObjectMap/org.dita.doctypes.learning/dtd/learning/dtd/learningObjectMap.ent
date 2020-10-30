@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================= -->
+<!--                    HEADER                                     -->
+<!-- ============================================================= -->
+<!--  MODULE:    DITA learningObjectMap Entity                     -->
+<!--  VERSION:   1.3a                                               -->
+<!--  DATE:      October 2012                                      -->
+<!--                                                               -->
+<!-- ============================================================= -->
+
+<!-- ============================================================= -->
+<!-- SYSTEM:     Darwin Information Typing Architecture (DITA)     -->
+<!--                                                               -->
+<!-- PURPOSE:    Declaring the domain entity for the               -->
+<!--             Learning Object Map                               -->
+<!--                                                               -->
+<!-- ORIGINAL CREATION DATE:                                       -->
+<!--             October 2012                                      -->
+<!--                                                               -->
+<!--             (C) Copyright OASIS Open 2012.                    -->
+<!--             All Rights Reserved.                              -->
+<!--                                                               -->
+<!--  UPDATES:                                                     -->
+<!--    2012.10.18 DRB: Original creation                          -->
+<!--               Located with other learningObjectMap and        -->
+<!--               learningMapDomain components within the DITA-OT -->
+<!--               test plugin org.dita.doctypes.learning.         -->
+<!--                                                               -->
+<!-- ============================================================= -->
+<!-- ============================================================= -->
+<!--                    PUBLIC DOCUMENT TYPE DEFINITION            -->
+<!--                    TYPICAL INVOCATION                         -->
+<!--                                                               -->
+<!--  Refer to this file by the following public identifier or an 
+      appropriate system identifier:
+      PUBLIC "-//OASIS//ENTITIES DITA Learning Object Map//EN"
+      Delivered as file "learningObjectMap.ent"
+                                                                   -->
+<!-- ============================================================= -->
+<!--             LEARNING OBJECT MAP ENTITIES                      -->
+<!-- ============================================================= -->
+
+<!ENTITY learningObjectMap-att "(map learningObjectMap)">
+
+<!-- ============= End Learning Object Map Entities ============== -->

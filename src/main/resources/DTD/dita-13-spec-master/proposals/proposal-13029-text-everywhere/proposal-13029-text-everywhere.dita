@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN"
+ "reference.dtd">
+<reference id="IssueNumber00" xml:lang="en-us">
+<title>DITA 1.3 proposed feature #13029</title>
+<shortdesc>Allow the &lt;text> element to occur is all contexts where #PCDATA is
+    allowed.</shortdesc>
+<refbody>
+<section><title>Date and version information</title><p>Include the following information:<ul>
+     <li>Phase 2 submission Completed 17 Feb 2013</li>
+     <li>Champion: Eliot Kimber</li>
+    </ul></p></section>
+<section><title>Original requirement</title><p>Presented 7/12/2011: text should be allowed just about everywhere. Feature
+        12020 implemented in 1.2 requires the use &lt;keyword> when an element
+        type allows keyword but not ph. I think that the use of keyword in this
+        way constitutes tag abuse and could lead to unwanted or unexpected
+        results (e.g., text being bolded when it was not semantically a keyword
+        but just a re-used text phrase). I can't see any reason not to allow
+        &lt;text> in contexts that allow keyword but not &lt;ph>.</p>
+      <p>The issue is most clearly seen in doing content references of small
+        text strings. There contexts where only &lt;keyword> is allowed and
+        contexts where only &lt;text> is allowed, This means that for text used
+        in both contexts (which is quite common), you must maintain two copies
+        of the reusable text, one tagged as &lt;keyword> and one as
+        &lt;text>.</p></section>
+<section><title>Use cases</title><p>The primary use case is the ability to reuse short strings that do not
+        require any additional markup beyond that allowed in &lt;text> itself,
+        into any context where #PCDATA is allowed.</p></section>
+<section><title>Benefits</title><p>Address the following questions:<ul>
+     <li>This feature benefits all DITA users that need to use the &lt;text>
+          element for reuse.</li>
+     <li>The primary benefit is removing the need to maintain duplicate reusable
+          elements for the same text string and removing the need to know (and
+          understand why) &lt;text> is allowed in some contexts and not in
+          others.</li>
+     <li>The expectation is that most, if not all, DITA users will make use of
+          this feature to one degree or another.</li>
+     <li>This provides a significant positive impact by eliminating a
+          significant source of added cost and confusion.</li>
+    </ul></p></section>
+<section><title>Costs</title><p>Outline the impact (time and effort) of the feature on the following groups:<ul>
+     <li>Maintainers of the DTDs and XSDs:<ul
+          id="ul_c31_111_gj">
+          <li>Update DTD, XSD, and RNG/RNC declarations as described under
+            Technical Requirements. </li>
+          </ul></li>
+     <li>Editors of the DITA specification:<ul>
+       <li>How many new topics will be required?<ul
+            id="ul_s14_c11_gj">
+            <li>No new topics are required.</li>
+            </ul></li>
+       <li>How many existing topics will need to be edited?<ul
+            id="ul_f1h_d11_gj">
+            <li>The topic for &lt;text> will need to be updated to reflect its
+              more expansive role.</li>
+            <li>For other topics, only the generated contains and contains-by
+              information is affected.</li>
+            </ul></li>
+       <li>This feature does not affect the information architecture of the DITA
+            specification.</li>
+      </ul></li>
+     <li>Vendors of tools: Will need to reflect updated DTDs. Any special
+          handling of the &lt;text> element may need to be updated to reflect
+          its use in new contexts, although as &lt;text> has no default
+          formatting effect, this is probably a small cost.</li>
+     <li>This feature should not add to the perception of DITA complexity as in
+          fact it makes things simpler by removing special cases for occurrence
+          of &lt;text> that have proven to be confusing.</li>
+    </ul></p></section>
+<section><title>Technical requirements</title><p>Allowing &lt;text> everywhere #PCDATA is allowed requires the following
+        updates to the existing vocabulary modules:<ul
+        id="ul_xc2_r11_gj">
+        <li>Add to %basic.ph;  (and remove from %ph.content)</li>
+        <li>Add to %basic.ph.noxref (all title-like elements)</li>
+        <li>Add to %basic.ph.notm (programming and ui domains)</li>
+        <li>Add to elements that only allow #PCDATA</li>
+        <li>Add to %words.cnt; </li>
+        <li>bookmap.mod: Add to elements that allow #PCDATA but no other
+          parments.</li>
+        <li>learningMetadataDomain.mod: Add to elements that allow #PCDATA but
+          no other parments.</li>
+        <li>glossentry: Add to elements that do not allow it by any other
+          means.</li>
+        <li>xnalDomain: Add to elements that allow #PCDATA but no other
+          parments.</li>
+        </ul><note>While %txt.incl seems by its name to be an obvious place to
+        put &lt;text>, it has too much overlap with other parameter entities
+        that must include &lt;text> in order to get full
+        coverage.</note><note>The figgroup element allows all phrases but does
+        not allow #PCDATA. This makes it something of an outlier. Disallowing
+        &lt;text> within figgroup would require defining a new parameter entity
+        specifically for use within figgroup. As &lt;figgroup> is intended
+        primarily for specialization, this does not seem to be worth the
+        cost.</note></p></section>
+<section><title>Examples</title><p>Highlight
+        domain:<codeblock>    &lt;section>
+      &lt;title>Highlight domain&lt;/title>
+      &lt;p>&lt;b>bold: &lt;text>text item&lt;/text>&lt;/b>&lt;/p>
+      &lt;p>&lt;i>italic: &lt;text>text item&lt;/text>&lt;/i>&lt;/p>
+      &lt;p>&lt;sub>sub: &lt;text>text item&lt;/text>&lt;/sub>&lt;/p>
+      &lt;p>&lt;sup>sup: &lt;text>text item&lt;/text>&lt;/sup>&lt;/p>
+      &lt;p>&lt;tt>tt: &lt;text>text item&lt;/text>&lt;/tt>&lt;/p>
+      &lt;p>&lt;u>u: &lt;text>text item&lt;/text>&lt;/u>&lt;/p>
+    &lt;/section></codeblock></p>
+      <p>Programing and UI
+        domains:<codeblock>&lt;section>
+  &lt;title>basic.ph.notm (programing and UI domains)&lt;/title>
+  &lt;p>codeph: &lt;codeph>&lt;text>text item&lt;/text>&lt;/codeph> &lt;/p>
+  &lt;p>codeblock: &lt;codeblock>&lt;text>text item&lt;/text>&lt;/codeblock>&lt;/p>
+  &lt;p>Syntx elements: &lt;syntaxdiagram>
+    &lt;fragment>
+      &lt;groupseq>
+        &lt;var>var: &lt;text>text item&lt;/text>&lt;/var>
+        &lt;oper>oper: &lt;text>text item&lt;/text>&lt;/oper>
+        &lt;delim>delim: &lt;text>text item&lt;/text>&lt;/delim>
+        &lt;sep>sep: &lt;text>text item&lt;/text>&lt;/sep>
+        &lt;groupchoice>
+          &lt;repsep>repsep: &lt;text>text item&lt;/text>&lt;/repsep>
+        &lt;/groupchoice>
+      &lt;/groupseq>
+    &lt;/fragment>
+    &lt;synnote>Syntax note: &lt;text>text item&lt;/text>&lt;/synnote>
+    &lt;/syntaxdiagram> &lt;/p>
+&lt;/section></codeblock></p></section>
+</refbody>
+</reference><?Pub Caret -3?>
+<?Pub *0000003625?>

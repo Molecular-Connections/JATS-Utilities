@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dita PUBLIC "-//OASIS//DTD DITA Composite//EN" "ditabase.dtd">
+<dita>
+  <topic id="topic_aqh_5zt_3h">
+    <title>Stage 3 proposal: Feature 13092 allow &lt;ph> in
+      &lt;indexterm></title>
+    <shortdesc>Allow &lt;ph> within &lt;indexterm><?oxy_insert_start author="ekimber" timestamp="20130908T080206-0500"?> and &lt;index-base><?oxy_insert_end?>.</shortdesc>
+    <body>
+      <section>
+        <title>Champion</title>
+        <p>Eliot Kimber</p>
+      </section>
+      <section>
+        <title>Tracking information</title>
+        <simpletable
+          frame="all"
+          relcolwidth="1.7* 1.0* 3.19*"
+          id="simpletable_myt_1fp_fl">
+          <sthead>
+            <stentry>Event</stentry>
+            <stentry>Date</stentry>
+            <stentry>Links</stentry>
+          </sthead>
+          <strow>
+            <stentry>Stage 1 proposal accepted</stentry>
+            <stentry>29 Nov 2011</stentry>
+            <stentry><xref
+              href="https://www.oasis-open.org/apps/org/workgroup/dita/download.php/44468/minutes20111122.txt"
+              format="txt"
+              scope="external">https://www.oasis-open.org/apps/org/workgroup/dita/download.php/44468/minutes20111122.txt</xref></stentry>
+          </strow>
+          <strow>
+            <stentry>Stage 2 proposal submitted</stentry>
+            <stentry>6 May 2013</stentry>
+            <stentry><xref
+              href="https://www.oasis-open.org/apps/org/workgroup/dita/download.php/49088/proposal-13092.dita"
+              scope="external"
+              format="html">https://www.oasis-open.org/apps/org/workgroup/dita/download.php/49088/proposal-13092.dita</xref>, <xref
+              href="https://www.oasis-open.org/apps/org/workgroup/dita/download.php/49090/proposal-13092.html"
+              format="html"
+              scope="external">https://www.oasis-open.org/apps/org/workgroup/dita/download.php/49090/proposal-13092.html</xref></stentry>
+          </strow>
+          <strow>
+            <stentry>Stage 2 proposal discussed</stentry>
+            <stentry>14 May 2013</stentry>
+            <stentry><xref
+              href="https://www.oasis-open.org/apps/org/workgroup/dita/download.php/49170/minutes20130514.txt"
+              format="txt"
+              scope="external">https://www.oasis-open.org/apps/org/workgroup/dita/download.php/49170/minutes20130514.txt</xref></stentry>
+          </strow>
+          <strow>
+            <stentry>Stage 2 proposal approved</stentry>
+            <stentry>21 May 2013</stentry>
+            <stentry><xref
+              href="https://www.oasis-open.org/apps/org/workgroup/dita/download.php/49347/minutes20130521.txt"
+              format="txt"
+              scope="external">https://www.oasis-open.org/apps/org/workgroup/dita/download.php/49347/minutes20130521.txt</xref></stentry>
+          </strow>
+          <strow>
+            <stentry>Stage 3 proposal submitted to reviewers</stentry>
+            <stentry>1 Jul 2013</stentry>
+            <stentry>Stan Doherty, JoAnn Hackos</stentry>
+          </strow>
+          <strow>
+            <stentry>Stage 3 proposal (this document) submitted</stentry>
+            <stentry>19 Aug 2013</stentry>
+            <stentry/>
+          </strow>
+        </simpletable>
+      </section>
+      <section>
+        <title>Approved technical requirements</title>
+        <p>Add &lt;ph> to the content model of &lt;indexterm>, <?oxy_insert_start author="ekimber" timestamp="20130908T074326-0500"?>&lt;index-base>, <?oxy_insert_end?>&lt;index-see>, and
+          &lt;index-see-also>.</p>
+      </section>
+      <section>
+        <title>Dependencies or interrelated proposals</title>
+        <p>No related proposals.</p>
+      </section>
+      <section>
+        <title>Modified DTDs</title>
+        <dl>
+          <dlentry>
+            <dt>commonElements.mod</dt>
+            <dd>
+              <p>Add "%ph;" to the content model for &lt;index-base> and
+                &lt;indexterm>:<codeblock>&lt;!--                    LONG NAME: Index Term                      -->
+&lt;!ENTITY % indexterm.content
+                       "(%words.cnt;|
+                         <b>%ph; |</b>
+                         %indexterm;|
+                         %index-base;)*"
+></codeblock><?oxy_insert_start author="ekimber" timestamp="20130908T074348-0500"?><codeblock>&lt;!--                    LONG NAME: Index Base                      -->
+&lt;!ENTITY % index-base.content
+                       "(%words.cnt; |
+                         <b>%ph; |</b>
+                         %indexterm;)*"
+></codeblock><?oxy_insert_end?></p>
+            </dd>
+          </dlentry>
+          <dlentry>
+            <dt>indexingDomain.dom</dt>
+            <dd>
+              <p>Add "%ph;" to the content models for &lt;index-see> and
+                &lt;index-see-also>:<codeblock>&lt;!--                    LONG NAME: Index See                       -->
+&lt;!ENTITY % index-see.content
+                       "(%words.cnt; |
+                         <b>%ph; |</b>
+                         %indexterm;)*"
+></codeblock><codeblock>&lt;!--                    LONG NAME: Index See Also                  -->
+&lt;!ENTITY % index-see-also.content
+                       "(%words.cnt; |
+                         <b>%ph; |</b>
+                         %indexterm;)*"
+></codeblock></p>
+            </dd>
+          </dlentry>
+        </dl>
+      </section>
+      <section>
+        <title>Modified specification documentation</title>
+        <?oxy_insert_start author="ekimber" timestamp="20130908T074414-0500"?>
+        <table
+          frame="all"
+          id="table_e2y_f31_ll">
+          <title>Modified Topics</title>
+          <tgroup
+            cols="4">
+            <colspec
+              colname="c1"
+              colnum="1"
+              colwidth="1.13*"/>
+            <colspec
+              colname="c2"
+              colnum="2"
+              colwidth="0.5*"/>
+            <colspec
+              colname="c3"
+              colnum="3"
+              colwidth="2.34*"/>
+            <thead>
+              <row>
+                <entry>Topic to Be Modified</entry>
+                <entry>DITA 1.2 Text</entry>
+                <entry
+                  namest="c3"
+                  nameend="newCol4">Proposed 1.3 Text</entry>
+              </row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>langref/indexterm.dita</entry>
+                <entry/>
+                <entry
+                  namest="c3"
+                  nameend="newCol4">Add new figure to end of examples section:<fig
+                  id="fig_l32_zk1_ll">
+                  <title>Index term with &lt;ph> or &lt;ph> specializations</title>
+                  <codeblock>&lt;p>Einstein's most famous equation
+E=mc&lt;sup>2&lt;/sup>&lt;indexterm>E=mc&lt;sup>2&lt;/sup>&lt;/indexterm> 
+expresses the relationship between mass and energy.</codeblock>
+                  <p>All the elements in the highlight domain are specializations of &lt;ph>.</p>
+                  </fig></entry>
+              </row>
+              <row>
+                <entry>langref/index-see.dita</entry>
+                <entry/>
+                <entry
+                  namest="c3"
+                  nameend="newCol4">Add new example to end of examples section:<p>The following example illustrates using a specialization of &lt;ph> within
+                  &lt;index-see>:<codeblock>&lt;indexterm>Einstein's mass and energy equation
+  &lt;index-see>E=mc&lt;sup>2&lt;/sup>&lt;/index-see>
+&lt;/indexterm></codeblock></p></entry>
+              </row>
+              <row>
+                <entry>langref/index-see-also.dita</entry>
+                <entry/>
+                <entry
+                  namest="c3"
+                  nameend="newCol4">Add a new example to the end of the examples section:<p>The following example illustrates using a specialization of &lt;ph> within
+                  &lt;index-see-also>:<codeblock>&lt;indexterm>μ = E&lt;sub>0&lt;/sub>/V&lt;sup>2&lt;/sup>
+  &lt;index-see-also>E=mc&lt;sup>2&lt;/sup>&lt;/index-see-also>
+&lt;/indexterm></codeblock></p></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+        <?oxy_insert_end?>
+      </section>
+    </body>
+  </topic>
+</dita>
+
+<?oxy_options track_changes="on"?>

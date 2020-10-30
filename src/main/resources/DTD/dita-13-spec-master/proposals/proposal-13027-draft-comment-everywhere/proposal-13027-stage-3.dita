@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dita PUBLIC "-//OASIS//DTD DITA Composite//EN" "ditabase.dtd">
+<dita>
+  <topic id="topic_aqh_5zt_3h">
+    <title>Stage 3 proposal: Feature 13027 Draft Comment And Required Cleanup
+      Everywhere</title>
+    <shortdesc>Allow draft-comment and required-cleanup universally.</shortdesc>
+    <body>
+      <section>
+        <title>Champion</title>
+        <p>Eliot Kimber</p>
+      </section>
+      <section>
+        <title>Tracking information</title>
+        <simpletable
+          frame="all"
+          relcolwidth="1.0* 1.0* 1.0*"
+          id="simpletable_lj4_c2p_fl">
+          <sthead>
+            <stentry>Event</stentry>
+            <stentry>Date</stentry>
+            <stentry>Links</stentry>
+          </sthead>
+          <strow>
+            <stentry>Stage 1 proposal accepted</stentry>
+            <stentry>12 July 2011</stentry>
+            <stentry><xref
+              href="https://lists.oasis-open.org/archives/dita/201107/msg00007.html"
+              format="html"
+              scope="external">https://lists.oasis-open.org/archives/dita/201107/msg00007.html</xref></stentry>
+          </strow>
+          <strow>
+            <stentry>Stage 2 proposal submitted</stentry>
+            <stentry>16 Feb 2013</stentry>
+            <stentry><xref
+              href="https://www.oasis-open.org/apps/org/workgroup/dita/download.php/48292/proposal-13027-draft-comment-everywhere.dita"
+              scope="external"
+              format="html">https://www.oasis-open.org/apps/org/workgroup/dita/download.php/48292/proposal-13027-draft-comment-everywhere.dita</xref>, <xref
+              href="https://www.oasis-open.org/apps/org/workgroup/dita/download.php/48293/proposal-13027-draft-comment-everywhere.html"
+              format="html"
+              scope="external">https://www.oasis-open.org/apps/org/workgroup/dita/download.php/48293/proposal-13027-draft-comment-everywhere.html</xref></stentry>
+          </strow>
+          <strow>
+            <stentry>Stage 2 proposal discussed</stentry>
+            <stentry>19 Feb 2013</stentry>
+            <stentry><xref
+              href="https://www.oasis-open.org/apps/org/workgroup/dita/download.php/48344/minutes20130219.txt"
+              format="txt"
+              scope="external">https://www.oasis-open.org/apps/org/workgroup/dita/download.php/48344/minutes20130219.txt</xref></stentry>
+          </strow>
+          <strow>
+            <stentry>Stage 2 proposal approved</stentry>
+            <stentry>26 Feb 2013</stentry>
+            <stentry><xref
+              href="https://www.oasis-open.org/apps/org/workgroup/dita/download.php/48436/minutes20130226.txt"
+              format="txt"
+              scope="external">https://www.oasis-open.org/apps/org/workgroup/dita/download.php/48436/minutes20130226.txt</xref></stentry>
+          </strow>
+          <strow>
+            <stentry>Stage 3 proposal submitted to reviewers</stentry>
+            <stentry>21 June 2013</stentry>
+            <stentry>Nancy Harrison, Jim Tivy</stentry>
+          </strow>
+          <strow>
+            <stentry>Stage 3 proposal (this document) submitted</stentry>
+            <stentry>19 Aug 2013</stentry>
+            <stentry/>
+          </strow>
+        </simpletable>
+      </section>
+      <section>
+        <title>Approved technical requirements</title>
+        <ul>
+          <li>Add &lt;draft-comment> and &lt;required-cleanup> to the following places that do not allow it in 1.2:<ul
+            id="ul_t1q_dvt_ng">
+            <li>&lt;term></li>
+            <li>&lt;keyword></li>
+            <li>&lt;navtitle></li>
+            <li>&lt;searchtitle></li>
+            <li>&lt;alt></li>
+            <li>&lt;consequence>, &lt;howtoavoid>, &lt;typeofhazard> (hazard domain)</li>
+            <li>&lt;msgph> (software domain)</li>
+            <li>%data.cnt; (&lt;data>, &lt;glossProperty>)</li>
+            <li>%desc.cnt</li>
+            <li>%fig.cnt</li>
+            <li>%figgroup.cnt</li>
+            <li>%fn.cnt</li>
+            <li>%shortquote.cnt</li>
+            <li>%term.cnt (&lt;dt>)</li>
+            <li>%title.cnt (&lt;title>, &lt;shortdesc>, &lt;dthd>, &lt;ddhd>, &lt;glossterm>) [NOTE: remove draft-comment from %shortdesc.content]</li>
+            <li>%xreftext.cnt</li>
+            <li>%xrefph.cnt</li>
+            </ul></li>
+          <li>
+            <note>While %word.cnt; would seem like an appropriate place to add
+              draft-comment and required-cleanup in order to make them available
+              everywhere, it would have the effect of allowing them where they
+              are almost certainly not appropriate, including index entries and
+              other very-constrained contexts.</note>
+          </li>
+          <li>Change definition of elements in highlighDomain.mod to %ph.content; from current content models (ensures these elements exactly match &lt;ph> content model).<note>This is the approved
+            Stage 2 requirement. However, subsequent review determined that this change was too broad. The revised requirement is limited to added &lt;draft-comment> and &lt;required-cleanup> to the
+            highlight domain elements and to &lt;codeph>.</note></li>
+          <li>Change codeph.content value to "%ph.content;" (programming domain)<note>As for the highlight domain, this requirement was deemed to be too broach during Stage 3 review.</note></li>
+        </ul>
+        <p>Processors will need to provide appropriate ways to render draft
+          comments that occur outside of normal topic body content, such as
+          within metadata elements or titles. Rendering options could include:<ul
+          id="ul_rkx_hzt_ng">
+          <li>Present draft comments as footnotes.</li>
+          <li>Render draft comments as marginalia.</li>
+          <li>Render draft comments in the nearest flowed content area, for
+            example, after a title for comments within titles.</li>
+          <li>Collect draft comments in a separate area as for end notes.</li>
+          <li>Produce a separate draft-comment report that shows the comments
+            and the element that contains it.</li>
+          </ul></p>
+      </section>
+      <section>
+        <title>Dependencies or interrelated proposals</title>
+        <p>No related proposals.</p>
+      </section>
+      <section>
+        <title>Modified DTDs</title>
+        <dl>
+          <dlentry>
+            <dt><filepath>commonElements.mod</filepath></dt>
+            <dd>Add %draft-comment; and %required-cleanup; to %title.cnt,
+              %xref.cnt, %xrefph.cnt, %shortquote.cnt, %desc.cnt, %ph.cnt,
+              %term.cnt, %figgroup.cnt, and
+              %data.cnt:<codeblock>&lt;!ENTITY % title.cnt 
+  "#PCDATA | 
+   %basic.ph.noxref; | 
+   %data.elements.incl; |
+   %draft-comment; |
+   %foreign.unknown.incl; |
+   %required-cleanup; |
+   %image;
+  "
+>
+&lt;!ENTITY % xreftext.cnt 
+  "#PCDATA | 
+   %basic.ph.noxref; | 
+   %data.elements.incl; | 
+   %draft-comment; |
+   %foreign.unknown.incl; | 
+   %image; |
+   %required-cleanup;
+  "
+>
+&lt;!ENTITY % xrefph.cnt 
+  "#PCDATA | 
+   %basic.ph.noxref; | 
+   %data.elements.incl; |
+   %draft-comment; | 
+   %foreign.unknown.incl; |
+   %required-cleanup;
+  "
+>
+&lt;!ENTITY % shortquote.cnt 
+  "#PCDATA | 
+   %basic.ph; | 
+   %data.elements.incl; |
+   %draft-comment; | 
+   %foreign.unknown.incl; |
+   %required-cleanup;
+  "
+>
+...
+&lt;!ENTITY % desc.cnt 
+  "#PCDATA | 
+   %basic.block.notbfgobj; | 
+   %basic.ph; | 
+   %data.elements.incl; |
+   %draft-comment; |
+   %foreign.unknown.incl; |
+   %required-cleanup;
+  "
+>
+...
+&lt;!ENTITY % fn.cnt 
+  "#PCDATA | 
+   %basic.block.notbl; | 
+   %basic.ph; | 
+   %data.elements.incl; |
+   %draft-comment; | 
+   %foreign.unknown.incl; |
+   %required-cleanup;
+  "
+>
+&lt;!ENTITY % fn.cnt 
+  "#PCDATA | 
+   %basic.block.notbl; | 
+   %basic.ph; | 
+   %data.elements.incl; |
+   %draft-comment; | 
+   %foreign.unknown.incl; |
+   %required-cleanup;
+  "
+>
+&lt;!ENTITY % term.cnt 
+  "#PCDATA | 
+   %basic.ph; | 
+   %data.elements.incl; |
+   %draft-comment; |
+   %foreign.unknown.incl; | 
+   %image; |
+   %required-cleanup;
+  "
+>
+...
+&lt;!ENTITY % figgroup.cnt 
+  "%basic.block.notbnofg; | 
+   %basic.ph; |
+   %data.elements.incl; | 
+   %draft-comment; | 
+   %fn; |
+   %foreign.unknown.incl; |
+   %required-cleanup; 
+  "
+>
+...
+&lt;!ENTITY % data.cnt 
+  "%words.cnt; |
+   %draft-comment; |
+   %image; |
+   %object; |
+   %ph; |
+   %required-cleanup; |
+   %title; 
+  "
+></codeblock><p>Add
+              %draft-comment; and %required-cleanup to
+              %navtitle.content:<codeblock>&lt;!ENTITY % navtitle.content
+                       "(%words.cnt; |
+                         %ph; |
+                         %draft-comment; |
+                         %required-cleanup;)*"
+></codeblock></p><p>Remove
+              %draft-comment; from
+              %shordesc.content:<codeblock>&lt;!ENTITY % shortdesc.content
+                       "(%title.cnt;)*"
+></codeblock></p><p>Add
+              %draft-comment; and %required-cleanup; to %keyword.content,
+              %term.content, %alt.content,
+              <codeblock>&lt;!ENTITY % keyword.content
+                       "(#PCDATA |
+                         %draft-comment; |
+                         %required-cleanup; |
+                         %text; |
+                         %tm;)*"
+>
+...
+&lt;!ENTITY % term.content
+                       "(#PCDATA |
+                         %draft-comment; |
+                         %required-cleanup; |
+                         %text; |
+                         %tm;)*"
+>
+...
+&lt;!ENTITY % alt.content
+                       "(%words.cnt; |
+                         %ph; |
+                         %draft-comment; |
+                         %required-cleanup;)*
+"></codeblock></p></dd>
+          </dlentry>
+          <dlentry>
+            <dt>highlightDomain.mod</dt>
+            <dd>
+              <p>Add %draft-comment; and %required-cleanup; to the content models of b, i, u, tt, sup, and sub
+                <codeblock>&lt;!ENTITY % b.content
+                       "(#PCDATA | 
+                         %basic.ph; | 
+                         %data.elements.incl; |
+                         %draft-comment; | 
+                         %foreign.unknown.incl; |
+                         %required-cleanup;)*"
+>
+...
+&lt;!ENTITY % u.content
+                       "(#PCDATA | 
+                         %basic.ph; | 
+                         %data.elements.incl; |
+                         %draft-comment; | 
+                         %foreign.unknown.incl; |
+                         %required-cleanup;)*"
+>
+...
+&lt;!ENTITY % i.content
+                       "(#PCDATA | 
+                         %basic.ph; | 
+                         %data.elements.incl; |
+                         %draft-comment; | 
+                         %foreign.unknown.incl; |
+                         %required-cleanup;)*"
+>
+...
+&lt;!ENTITY % tt.content
+                       "(#PCDATA | 
+                         %basic.ph; | 
+                         %data.elements.incl; |
+                         %draft-comment; | 
+                         %foreign.unknown.incl; |
+                         %required-cleanup;)*"
+>
+...
+&lt;!ENTITY % sup.content
+                       "(#PCDATA | 
+                         %basic.ph; | 
+                         %data.elements.incl; |
+                         %draft-comment; | 
+                         %foreign.unknown.incl; |
+                         %required-cleanup;)*"
+>
+...
+&lt;!ENTITY % sub.content
+                       "(#PCDATA | 
+                         %basic.ph; | 
+                         %data.elements.incl; |
+                         %draft-comment; | 
+                         %foreign.unknown.incl; |
+                         %required-cleanup;)*"
+></codeblock></p>
+            </dd>
+          </dlentry>
+          <dlentry>
+            <dt>programmingDomain.mod</dt>
+            <dd>
+              <p>Add %draft-comment; and %required-cleanup; to
+                "%ph.content;":<codeblock>&lt;!ENTITY % codeph.content
+   "(#PCDATA|
+     %basic.ph.notm; |
+     %data.elements.incl; |
+     %foreign.unknown.incl;)*
+></codeblock></p>
+            </dd>
+          </dlentry>
+        </dl>
+      </section>
+      <section><title>Modified specification documentation</title>No editorial
+        modifications are required, only updates to generated content model
+        tables. </section>
+    </body>
+  </topic>
+</dita>

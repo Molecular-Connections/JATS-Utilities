@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN"
+ "reference.dtd">
+<?Pub Sty _display FontColor="red"?>
+<reference id="noFileRenaming" xml:lang="en-us" rev="13059a">
+  <title>dvr-keynameSuffix</title>
+  <shortdesc>The &lt;<keyword>dvr-keynameSuffix</keyword>> element specifies the suffix to use when constructing the effective key names for key-defining topic references in the map branch implied by
+    the ancestor &lt;<keyword>ditavalref</keyword>> element.</shortdesc>
+  <prolog>
+    <metadata>
+      <keywords>
+        <indexterm>dvr-keynameSuffix</indexterm>
+      </keywords>
+    </metadata>
+  </prolog>
+  <refbody>
+    <section>
+      <p>For map branches implied by &lt;ditavalref> elements, the value of the &lt;dvr-keynameSuffix> element contributes to the effective key names of topicrefs within the branch such that the
+        effective key names end with the value of the &lt;dvr-keynameSuffix> element. Topic references that do not specify @keys are not affected.</p>
+    </section>
+    <section id="contains" otherprops="contains">
+      <title>Contains</title>
+      <p>text content or &lt;text></p>
+    </section>
+    <section id="containedby" otherprops="containedby">
+      <title>Contained By</title>
+      <p>ditavalmeta</p>
+    </section>
+    <section id="inheritance" otherprops="inheritance">
+      <title>Inheritance</title>
+      <p>+ topic/data ditavalref-d/dvr-keynameSuffix </p>
+    </section>
+    <example id="example"> <title>Example</title><p>If the the &lt;dvr-keynameSuffix> is specified
+      as:<codeblock>&lt;topicref keys="branch-01"
+    href="branch-01.dita" 
+    keyscope="branch-01"
+  >
+  &lt;ditavalref href="condition-01.ditaval">
+    &lt;ditavalmeta>
+      &lt;dvr-keynameSuffix>-cond01&lt;/dvr-keynameSuffix>
+    &lt;/ditavalmeta>
+  &lt;/ditavalref>
+  &lt;topicref 
+    keys="branch-01-subtopic-01"
+    href="topics/subtopic-01.dita"/>
+&lt;/topicref></codeblock></p>then
+      the effective key names for the two key-defining topicrefs in the branch are "branch-01-cond01" and "branch01-subtopic-01-cond01", respectively.</example>
+    <section id="attributes">
+      <title>Attributes</title>
+      <simpletable id="attribute_table" relcolwidth="2* 3* 1* 1* 1*">
+        <sthead>
+          <stentry>Name</stentry>
+          <stentry>Description</stentry>
+          <stentry>Data Type</stentry>
+          <stentry>Default Value</stentry>
+          <stentry>Required?</stentry>
+        </sthead>
+        <strow conref="../../common/commonLRdefs.dita#commonLRdefs/audience">
+          <stentry>name</stentry>
+          <stentry>The name of the metadata item</stentry>
+          <stentry>string</stentry>
+          <stentry>dvr-keynameSuffix</stentry>
+          <stentry/>
+        </strow>
+      </simpletable>
+    </section>
+  </refbody>
+</reference>

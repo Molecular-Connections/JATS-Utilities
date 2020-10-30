@@ -1,0 +1,23 @@
+RNG2DTD To Dos:
+
+** topic-info-types not being declared.
+
+2. Pull {typename}-attlist into main {typename)-attributes:
+
+<!ENTITY % concept.attlist
+              "(%concept.attributes;
+                %arch-atts;)" 
+>
+
+6. Declaration for no-topic-nesting attributes. Should be an empty replacement text rather
+   than no declaration at all.
+   
+
+8. Generate catalogs
+
+RNG2XSD To Dos:
+
+
+- Put commonElements and metaDecl inclusions in shells, not topicMod.xsd
+
+- Include *.attlist in main .attributes group

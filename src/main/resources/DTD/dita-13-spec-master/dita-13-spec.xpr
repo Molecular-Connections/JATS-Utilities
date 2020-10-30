@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="15.2">
+    <meta>
+        <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
+        <options>
+            <serialized version="15.2" xml:space="preserve">
+                <map>
+                    <entry>
+                        <String>catalogs.v5</String>
+                        <String-array>
+                            <String>file:/Users/ekimber/workspace/dita-12-spec/doctypes/test/temp/generated/1.2/catalog-dita.xml</String>
+                        </String-array>
+                    </entry>
+                    <entry>
+                        <String>document.types</String>
+                        <documentTypeDescriptor-array>
+                            <documentTypeDescriptor>
+                                <field name="name">
+                                    <String>NLM</String>
+                                </field>
+                                <field name="schemaDescriptor">
+                                    <docTypeSchema>
+                                        <field name="type">
+                                            <Integer>1</Integer>
+                                        </field>
+                                        <field name="uri">
+                                            <String>${frameworks}/nlm/publishing/2.3/journal-publishing-dtd-2.3/journalpublishing.dtd</String>
+                                        </field>
+                                    </docTypeSchema>
+                                </field>
+                                <field name="classpath">
+                                    <String-array/>
+                                </field>
+                                <field name="parentClassLoaderID">
+                                    <null/>
+                                </field>
+                                <field name="authorExtensionDescriptor">
+                                    <authorExtension>
+                                        <field name="cssDescriptors">
+                                            <cssFile-array>
+                                                <cssFile>
+                                                    <field name="href">
+                                                        <String>${frameworks}/nlm/tools/ViewNLM-v2.3/ViewNLM.css</String>
+                                                    </field>
+                                                    <field name="title">
+                                                        <String></String>
+                                                    </field>
+                                                    <field name="alternate">
+                                                        <Boolean>false</Boolean>
+                                                    </field>
+                                                </cssFile>
+                                            </cssFile-array>
+                                        </field>
+                                        <field name="mergeCSSsFromDocument">
+                                            <Boolean>false</Boolean>
+                                        </field>
+                                        <field name="actionDescriptors">
+                                            <action-array/>
+                                        </field>
+                                        <field name="menubarDescriptor">
+                                            <menu>
+                                                <field name="label">
+                                                    <String>Menu</String>
+                                                </field>
+                                                <field name="accessKey">
+                                                    <null/>
+                                                </field>
+                                                <field name="iconPath">
+                                                    <null/>
+                                                </field>
+                                                <field name="menuEntriesDescriptorList">
+                                                    <menuEntry-array/>
+                                                </field>
+                                            </menu>
+                                        </field>
+                                        <field name="popupMenuDescriptor">
+                                            <menu>
+                                                <field name="label">
+                                                    <String>Contextual menu</String>
+                                                </field>
+                                                <field name="accessKey">
+                                                    <null/>
+                                                </field>
+                                                <field name="iconPath">
+                                                    <null/>
+                                                </field>
+                                                <field name="menuEntriesDescriptorList">
+                                                    <menuEntry-array/>
+                                                </field>
+                                            </menu>
+                                        </field>
+                                        <field name="toolbarDescriptor">
+                                            <toolbar>
+                                                <field name="id">
+                                                    <String>Toolbar</String>
+                                                </field>
+                                                <field name="type">
+                                                    <Integer>2</Integer>
+                                                </field>
+                                                <field name="largeIconPath">
+                                                    <null/>
+                                                </field>
+                                                <field name="smallIconPath">
+                                                    <null/>
+                                                </field>
+                                                <field name="toolbarEntriesDescriptorList">
+                                                    <toolbarEntry-array/>
+                                                </field>
+                                            </toolbar>
+                                        </field>
+                                        <field name="additionalToolbarsDescriptors">
+                                            <null/>
+                                        </field>
+                                        <field name="contextualItems">
+                                            <contextProvider>
+                                                <field name="items">
+                                                    <contextItem-array/>
+                                                </field>
+                                                <field name="removeItems">
+                                                    <null/>
+                                                </field>
+                                            </contextProvider>
+                                        </field>
+                                        <field name="tableSupportClassName">
+                                            <null/>
+                                        </field>
+                                        <field name="tableColWidthSupportClassName">
+                                            <null/>
+                                        </field>
+                                        <field name="customReferencesResolver">
+                                            <null/>
+                                        </field>
+                                        <field name="authorExtensionStateListener">
+                                            <null/>
+                                        </field>
+                                        <field name="attributesRecognizer">
+                                            <null/>
+                                        </field>
+                                    </authorExtension>
+                                </field>
+                                <field name="templatesLocations">
+                                    <String-array/>
+                                </field>
+                                <field name="xmlCatalogs">
+                                    <String-array/>
+                                </field>
+                                <field name="description">
+                                    <String>NLM DTDS</String>
+                                </field>
+                                <field name="doctypeRules">
+                                    <documentTypeRule-array>
+                                        <documentTypeRule>
+                                            <field name="namespace">
+                                                <String>*</String>
+                                            </field>
+                                            <field name="rootElem">
+                                                <String>*</String>
+                                            </field>
+                                            <field name="fileName">
+                                                <String>*</String>
+                                            </field>
+                                            <field name="publicID">
+                                                <String>-//NLM//DTD Journal Publishing DTD v2.3 *</String>
+                                            </field>
+                                            <field name="javaRuleClass">
+                                                <String></String>
+                                            </field>
+                                            <field name="attributeLocalName">
+                                                <null/>
+                                            </field>
+                                            <field name="attributeNamespace">
+                                                <null/>
+                                            </field>
+                                            <field name="attributeValue">
+                                                <null/>
+                                            </field>
+                                        </documentTypeRule>
+                                    </documentTypeRule-array>
+                                </field>
+                                <field name="scenarios">
+                                    <scenario-array/>
+                                </field>
+                                <field name="validationScenarios">
+                                    <validationScenario-array/>
+                                </field>
+                                <field name="defaultValidationScenarios">
+                                    <null/>
+                                </field>
+                                <field name="defaultTransformationScenarios">
+                                    <null/>
+                                </field>
+                                <field name="extensionsBundleClassName">
+                                    <null/>
+                                </field>
+                                <field name="useImposedInitialPage">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="imposedInitialPage">
+                                    <String>Text</String>
+                                </field>
+                                <field name="elementLocatorExtension">
+                                    <null/>
+                                </field>
+                                <field name="schemaManagerFilterExtension">
+                                    <null/>
+                                </field>
+                                <field name="authorSWTDndExtension">
+                                    <null/>
+                                </field>
+                                <field name="textSWTDndExtension">
+                                    <null/>
+                                </field>
+                                <field name="authorSwingDndExtension">
+                                    <null/>
+                                </field>
+                                <field name="cssStylesFilterExtension">
+                                    <null/>
+                                </field>
+                                <field name="attributesValueEditor">
+                                    <null/>
+                                </field>
+                                <field name="priority">
+                                    <Integer>3</Integer>
+                                </field>
+                                <field name="xmlNodeCustomizerExtension">
+                                    <null/>
+                                </field>
+                                <field name="externalObjectInsertionHandler">
+                                    <null/>
+                                </field>
+                                <field name="customAttributeValueEditor">
+                                    <null/>
+                                </field>
+                            </documentTypeDescriptor>
+                        </documentTypeDescriptor-array>
+                    </entry>
+                    <entry>
+                        <String>document.types.order</String>
+                        <documentTypeEntry-array>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>2/internal/NLM</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/ant/ant.framework/ANT</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/dita/dita.framework/DITA</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>false</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/dita/ditamap.framework/DITA Map</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>false</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/dita/ditaval.framework/DITAVAL</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>false</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/daisy/daisy.framework/Daisy</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/docbook/docbook4.framework/DocBook 4</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/docbook/docbook5.framework/DocBook 5</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/docbook/targetset.framework/Docbook Targetset</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/ead/ead.framework/EAD</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/fo/fo.framework/FO</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/kml/kml.framework/KML</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/mathml/mathml.framework/MathML</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/maven/maven.framework/Maven Project</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/maven/maven.framework/Maven Settings</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/ncx/ncx.framework/NCX</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/nvdl/nvdl.framework/NVDL</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/xml/xmlcatalog.framework/OASIS XML Catalog</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/ocf/ocf.framework/OCF</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/odf/odf.framework/ODF 1.2</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/ooxml/ooxml.framework/OOXML</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/opf/opf2.0.framework/OPF 2.0</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/opf/opf3.0.framework/OPF 3.0</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/relaxng/relaxng.framework/Relax NG</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/svg/svg.framework/SVG</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/xslt/saxon.framework/Saxon</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/schematron/schematron.framework/Schematron</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/schematron/schematron15.framework/Schematron 1.5</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/stratml/stratml1.framework/StratML Part 1 (Strategic Plan)</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/stratml/stratml2.framework/StratML Part 2 (Perfomance Plans and Reports)</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/tei/teip5odd.framework/TEI ODD</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/tei/teip4.framework/TEI P4 (deprecated)</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/tei/teip5.framework/TEI P5</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/wsdl/wsdl.framework/WSDL</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/widgets/widgets.framework/Widgets</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/xhtml/xhtml.framework/XHTML</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/xmlschema/xmlschema.framework/XML Schema</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>false</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/xmlspec/xmlspec.framework/XMLSpec</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/xproc/xproc.framework/XProc</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/xslt/xslt.framework/XSLT</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/xspec/xspec.framework/XSpec</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/samples/application_form.framework/Application Form (Sample)</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/samples/form-controls.framework/Form Controls (Sample)</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/samples/personal.framework/Personal (Sample)</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                            <documentTypeEntry>
+                                <field name="documentTypeID">
+                                    <String>6/samples/travel-guide.framework/Travel Guide (Sample)</String>
+                                </field>
+                                <field name="enable">
+                                    <Boolean>true</Boolean>
+                                </field>
+                            </documentTypeEntry>
+                        </documentTypeEntry-array>
+                    </entry>
+                    <entry>
+                        <String>editor.format.break.line.before.attribute</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
+                        <String>editor.format.indent.inline.elements</String>
+                        <Boolean>false</Boolean>
+                    </entry>
+                    <entry>
+                        <String>editor.format.preserve.text.as.it.is</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
+                        <String>editor.indent.on.paste</String>
+                        <Boolean>false</Boolean>
+                    </entry>
+                    <entry>
+                        <String>editor.sort.attributes</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
+                        <String>enable.project.master.files.support</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
+                        <String>key.editor.document.type.association.option.pane</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
+                        <String>key.editor.format.xml.option.pane</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
+                        <String>key.xml.catalog.option.pane</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
+                        <String>resolve.schema.locations.also.through.system.mappings</String>
+                        <Boolean>false</Boolean>
+                    </entry>
+                    <entry>
+                        <String>search.resources.filter.history</String>
+                        <filterPanelHistoryItems>
+                            <field name="expressionsLists">
+                                <list>
+                                    <String>*.dtd</String>
+                                </list>
+                            </field>
+                        </filterPanelHistoryItems>
+                    </entry>
+                    <entry>
+                        <String>use.default.catalog</String>
+                        <Boolean>false</Boolean>
+                    </entry>
+                    <entry>
+                        <String>validation.scenarios</String>
+                        <validationScenario-array/>
+                    </entry>
+                </map>
+            </serialized>
+        </options>
+    </meta>
+    <projectTree name="dita-13-spec.xpr">
+        <folder masterFiles="true" name="Master Files">
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/base/rng/basemap.rng"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/base/xsd/basemap.xsd"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/base/rng/basetopic.rng"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/base/xsd/basetopic.xsd"/>
+            <file name="proposals/proposal-13112-rng/temp/generated-xsd/base/xsd/basetopic.xsd"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/bookmap/xsd/bookmap.xsd"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/subjectScheme/xsd/classifyMap.xsd"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/technicalContent/xsd/concept.xsd"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/technicalContent/xsd/ditabase.xsd"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/ditaval/xsd/ditaval.xsd"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/technicalContent/xsd/glossary.xsd"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/technicalContent/rng/glossentry.rng"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/technicalContent/xsd/glossentry.xsd"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/technicalContent/rng/glossgroup.rng"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/technicalContent/xsd/glossgroup.xsd"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/learning/xsd/learningAssessment.xsd"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/learning/xsd/learningBookmap.xsd"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/learning/xsd/learningMap.xsd"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/learning/rng/learningOverview.rng"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/learning/xsd/learningOverview.xsd"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/learning/xsd/learningPlan.xsd"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/learning/xsd/learningSummary.xsd"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/machineryIndustry/rng/machineryTask.rng"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/machineryIndustry/xsd/machineryTask.xsd"/>
+            <file name="proposals/proposal-13059-branchfilter/org.oasis-open.dita.ditavalrefdomain.test/doctypes/rng/map-ditavalref-test.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/technicalContent/rng/map.rng"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/technicalContent/xsd/map.xsd"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/technicalContent/rng/reference.rng"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/technicalContent/xsd/reference.xsd"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng.transforms/xsl/rng2containsby/rng2containsby.xsl"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng.transforms/xsl/rng2ditadtd/rng2ditadtd.xsl"/>
+            <file name="../dita-ng/xslt/rng2ditadtd/rng2ditadtd.xsl"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng.transforms/xsl/rng2ditaxsd/rng2ditaxsd.xsl"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/rngGrammar/rng/rngtopic.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/subjectScheme/rng/subjectScheme.rng"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/subjectScheme/xsd/subjectScheme.xsd"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/technicalContent/rng/task.rng"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/technicalContent/xsd/task.xsd"/>
+            <file name="proposals/proposal-13111-mathml/org.oasis-open.dita.mathml.test/doctypes/xsd/topic-mathml.xsd"/>
+            <file name="proposals/proposal-13102-release-management/test/topic-release-mgmt-local.dtd"/>
+            <file name="proposals/proposal-13035-xmldomain/org.oasis-open.dita.xmldomain.test/doctypes/rnc/topic-xmldomain-test.rnc"/>
+            <file name="proposals/proposal-13035-xmldomain/org.oasis-open.dita.xmldomain.test/doctypes/xsd/topic-xmldomain.xsd"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/technicalContent/rng/topic.rng"/>
+            <file name="proposals/proposal-13112-rng/exemplars/dita-1.2/xsd-url/technicalContent/xsd/topic.xsd"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/vocabularyModuleDesc/rng/vocabularyModuleDesc.rng"/>
+        </folder>
+        <folder name="RNG Shells">
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/base/rng/basemap.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/base/rng/basetopic.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/bookmap/rng/bookmap.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/subjectScheme/rng/classifyMap.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/technicalContent/rng/concept.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/technicalContent/rng/ditabase.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/technicalContent/rng/glossary.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/technicalContent/rng/glossentry.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/learning/rng/learningBookmap.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/learning/rng/learningContent.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/learning/rng/learningMap.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/learning/rng/learningOverview.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/learning/rng/learningPlan.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/learning/rng/learningSummary.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/machineryIndustry/rng/machineryTask.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/technicalContent/rng/map.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/allModules/rng/mapAllModules.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/technicalContent/rng/reference.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/rngGrammar/rng/rngtopic.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/subjectScheme/rng/subjectScheme.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/technicalContent/rng/task.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/technicalContent/rng/topic.rng"/>
+            <file name="proposals/proposal-13112-rng/org.oasis-open.dita.relaxng/doctypes/allModules/rng/topicAllModules.rng"/>
+        </folder>
+        <folder path="../../../../Applications/oxygen/frameworks/dita/"/>
+        <folder path="../../../../Applications/oxygen/frameworks/dita/css_classed/"/>
+        <folder path="../../../../Applications/oxygen/frameworks/dita/DITA-OT/"/>
+        <folder path="../../../../Applications/oxygen/frameworks/dita/DITA-OT/dtd/"/>
+        <folder path="."/>
+        <folder path="proposals/proposal-13106-learning2domain/spec/"/>
+        <folder path="../dita-utilities/"/>
+        <folder path="../DITA_TC_work/"/>
+        <folder path="../../workspace_40/dita4publishers_0.9.19_clean/"/>
+    </projectTree>
+</project>

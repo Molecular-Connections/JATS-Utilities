@@ -1,0 +1,33 @@
+<!-- =============================================================
+
+     XML construct domain
+
+     Provides phrase-level elements for identifying mentions of
+     XML constructs: element types, attributes, etc.
+
+     Copyright (c) 2013 OASIS Open
+
+
+     ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!--                    XML DOMAIN ENTITIES                        -->
+<!-- ============================================================= -->
+
+<!ENTITY % xml-d-keyword
+  "numcharref |
+   parameterentity |
+   textentity |
+   xmlatt |
+   xmlelement |
+   xmlnsname |
+   xmlpi
+  "
+  >
+
+<!ENTITY   xml-d-att     "(topic markup-d xml-d)"
+>
+
+
+<!-- ================== End XML Domain Entities ============ -->

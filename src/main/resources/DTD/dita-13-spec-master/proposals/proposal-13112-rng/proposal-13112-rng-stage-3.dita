@@ -1,0 +1,1644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dita PUBLIC "-//OASIS//DTD DITA Composite//EN" "ditabase.dtd">
+<dita>
+  <topic id="topic_aqh_5zt_3h">
+    <title>Stage 3 proposal: 13112, RELAX NG For Vocabulary</title>
+    <shortdesc>Defines the coding requirements for RELAX NG DITA vocabulary and constraint modules and document type shells.</shortdesc>
+    <body>
+      <section>
+        <title>Champion</title>
+        <p>Champions: Eliot Kimber, Robert Anderson, Michael Priestly</p>
+      </section>
+      <section>
+        <title>Tracking information</title>
+        <simpletable frame="all" relcolwidth="1.01* 1.02* 1.0*">
+          <sthead>
+            <stentry>Event</stentry>
+            <stentry>Date</stentry>
+            <stentry>Links</stentry>
+          </sthead>
+          <strow>
+            <stentry>Stage 1 proposal accepted</stentry>
+            <stentry>5 June 2012</stentry>
+            <stentry><xref href="https://www.oasis-open.org/apps/org/workgroup/dita/download.php?document_id=46183" format="html" scope="external"
+              >https://www.oasis-open.org/apps/org/workgroup/dita/download.php?document_id=46183</xref></stentry>
+          </strow>
+          <strow>
+            <stentry>Stage 2 proposal submitted</stentry>
+            <stentry>19 June 2013</stentry>
+            <stentry>HTML: <xref href="https://www.oasis-open.org/apps/org/workgroup/dita/download.php?document_id=49607" format="html" scope="external"
+              >https://www.oasis-open.org/apps/org/workgroup/dita/download.php?document_id=49607</xref>, DITA source: <xref
+              href="https://www.oasis-open.org/apps/org/workgroup/dita/download.php?document_id=49606" format="html" scope="external"
+              >https://www.oasis-open.org/apps/org/workgroup/dita/download.php?document_id=49606</xref></stentry>
+          </strow>
+          <strow>
+            <stentry>Stage 2 proposal discussed</stentry>
+            <stentry>20 August 2013</stentry>
+            <stentry><xref href="http://markmail.org/message/twdyijhlafuwpdwd" format="html" scope="external">http://markmail.org/message/twdyijhlafuwpdwd</xref></stentry>
+          </strow>
+          <strow>
+            <stentry>Stage 2 proposal approved</stentry>
+            <stentry>26 August 2013</stentry>
+            <stentry><xref href="http://markmail.org/message/twdyijhlafuwpdwd" format="html" scope="external">http://markmail.org/message/dvxgc6ug7o6h6s2u</xref></stentry>
+          </strow>
+          <strow>
+            <stentry>Stage 3 proposal submitted to reviewers</stentry>
+            <stentry>22 Nov 2013</stentry>
+            <stentry>Scott Hudson, Robert Anderson</stentry>
+          </strow>
+          <strow>
+            <stentry>Stage 3 proposal (this document) submitted</stentry>
+            <stentry/>
+            <stentry/>
+          </strow>
+        </simpletable>
+      </section>
+      <section>
+        <title>Approved technical requirements</title>
+        <p>The requirement is to use RELAX NG as a recognized and codified schema language for DITA vocabulary and constraint definitions.
+          <?oxy_delete author="ekimber" timestamp="20131207T074312-0600" content="As a schema syntax, RELAX NG offers a number of significant advantages over both DTD and XSD, advantages that make RELAX NG ideally suited to DITA&apos;s modular vocabulary architecture."?><?oxy_insert_start author="ekimber" timestamp="20131207T074312-0600"?>As
+          a schema syntax, RELAX NG offers a number of significant advantages over both DTD and XSD that are ideally suited to DITA's modular vocabulary architecture.<?oxy_insert_end?> The syntax
+          features of RELAX NG make defining vocabulary modules and the document shells that use them about as easy as it can be, avoiding both the syntactic complexity and unfamiliarity of DTDs and
+          the verbosity of XSD along with XSD's challenges with the redefine feature. </p>
+        <p>An additional requirement is to use RELAX NG as the master form for all vocabulary definitions from which all other schema formats can be generated, reducing the effort required to maintain
+          multiple forms of DITA modules and document type shells. In short, the requirement is "let the creators and maintainers of DITA modules and shells use the best available tools for the task." </p>
+        <p>Any schema language used for DITA vocabulary must support defaulted attributes and must support the integration and configuration of vocabulary and constraint modules into working document
+          type shells.</p>
+      </section>
+      <section>
+        <title>Dependencies or interrelated proposals</title>
+        <p>Is not dependent on any other proposals. </p>
+      </section>
+      <section>
+        <title>Modified DTDs</title>
+        <p>New topic type, vocabularyModuleDesc, which is used within DITA RNG modules, as annotations. This topic type is a specialization of &lt;topic>. It is required specifically to provide RNG
+          module metadata required to enable generation of other syntax forms of the module. It is not intended for use outside of this context. For that reason, it should not be considered part of
+          the main TC-defined DITA vocabulary, but part of the RNG facility. The markup is documented as part of the RNG facility (see <xref href="#concept_lbt_ct4_2m" format="dita"/>).</p>
+        <p>Vocabulary module description topic type:</p>
+        <codeblock><coderef href="org.oasis-open.dita.relaxng/doctypes/vocabularyModuleDesc/rng/vocabularyModuleDescMod.rng"/></codeblock>
+        <p>Vocabulary module topic document type shell:</p>
+        <codeblock><coderef href="org.oasis-open.dita.relaxng/doctypes/vocabularyModuleDesc/rng/vocabularyModuleDesc.rng"/></codeblock>
+      </section>
+      <section>
+        <title>Modified specification documentation</title>
+        <table
+          frame="all"
+          id="table_zzc_j4w_4k">
+          <title>Modified Topics</title>
+          <tgroup
+            cols="4">
+            <colspec
+              colname="c1"
+              colnum="1"
+              colwidth="2.02*"/>
+            <colspec
+              colname="c2"
+              colnum="2"
+              colwidth="1.13*"/>
+            <colspec
+              colname="c3"
+              colnum="3"
+              colwidth="1*"/>
+            <colspec
+              colname="newCol4"
+              colnum="4"
+              colwidth="1.05*"/>
+            <thead>
+              <row>
+                <entry>Topic to Be Modified</entry>
+                <entry>DITA 1.2 Text</entry>
+                <entry
+                  namest="c3"
+                  nameend="newCol4">Proposed 1.3 Text</entry>
+              </row>
+            </thead>
+            <tbody>
+              <?oxy_insert_start author="ekimber" timestamp="20131207T091539-0600"?>
+              <row>
+                <entry>introduction/normative-references.dita</entry>
+                <entry/>
+                <entry namest="c3" nameend="newCol4">Add entries for RELAX NG and RELAX NG DTD compatibility:<dl>
+                  <dlentry>
+                    <dt>[RNG]</dt>
+                    <dd>J. Clark, Makato Murata, <cite>RELAX NG Specification</cite>, <xref href="http://www.oasis-open.org/committees/relax-ng/spec-20011203.html" format="html" scope="external"
+                      >http://www.oasis-open.org/committees/relax-ng/spec-20011203.html</xref>, OASIS committee specification, December 3, 2001.</dd>
+                  </dlentry>
+                  <dlentry>
+                    <dt>[RNG Compact Syntax]</dt>
+                    <dd>J. Clark, <cite>RELAX NG Compact Syntax</cite>, <xref href="http://www.oasis-open.org/committees/relax-ng/compact-20021121.html" format="html" scope="external"
+                      >http://www.oasis-open.org/committees/relax-ng/compact-20021121.html</xref>, Committee Specification, November , 21 2002.</dd>
+                  </dlentry>
+                  <dlentry>
+                    <dt>[RNG DTD Compatibility]</dt>
+                    <dd>J. Clark, Makato Murata, <cite>RELAX NG DTD Compatibility</cite>, <xref href="http://www.oasis-open.org/committees/relax-ng/compatibility-20011203.html" format="html"
+                      scope="external">http://www.oasis-open.org/committees/relax-ng/compatibility-20011203.html</xref>, OASIS Committee Specification, 3 December 2001.</dd>
+                  </dlentry>
+                  </dl></entry>
+              </row>
+              <row>
+                <entry>introduction/non-normative-references.dita</entry>
+                <entry/>
+                <entry namest="c3" nameend="newCol4">Add entry for RNG-to-DTD and XSD utilities:<dl>
+                  <dlentry>
+                    <dt>[DITA RNG2DTDXSD]</dt>
+                    <dd>DITA Editors. Utilities for generating conforming DITA DTD and XSD document type shells and modules from DITA RELAX NG grammars. {Location to be determined, but likely a GitHub
+                      repository}.</dd>
+                  </dlentry>
+                  <dlentry>
+                    <dt>[SCHEMATRON]</dt>
+                    <dd>ISO/IEC 19757-3:2006(E), <cite>Information technology — Document Schema Definition Languages (DSDL) —Part 3: Rule-based validation — Schematron</cite>, ISO/IEC standard, 1 June
+                      2006. </dd>
+                  </dlentry>
+                  </dl></entry>
+              </row>
+              <?oxy_insert_end?>
+              <row>
+                <entry>archSpec/base/dita-terminology.dita</entry>
+                <entry>
+                  <dl>
+                    <dlentry>
+                      <dt>DITA document-type shell</dt>
+                      <dd>A set of DTD or XSD declarations that implement a DITA document type... </dd>
+                    </dlentry>
+                  </dl>
+                </entry>
+                <entry namest="c3" nameend="newCol4">
+                  <dl>
+                    <dlentry>
+                      <dt>DITA document-type shell</dt>
+                      <dd>A set of DTD, XSD, or RELAX NG declarations that implement a DITA document type... </dd>
+                    </dlentry>
+                  </dl>
+                </entry>
+              </row>
+              <row>
+                <entry morerows="1">archSpec/base/fileext.dita</entry>
+                <entry>
+                  <dl>
+                    <dlentry>
+                      <dt>Document-type shell files</dt>
+                      <dd>
+                        <ul id="ul_3298f6ba-c3a1-419b-88e5-104eb24fe903">
+                          <li><varname>typename</varname>.dtd</li>
+                          <li><varname>typename</varname>.xsd</li>
+                        </ul>
+                      </dd>
+                    </dlentry>
+                  </dl>
+                </entry>
+                <entry namest="c3" nameend="newCol4">
+                  <dl>
+                    <dlentry>
+                      <dt>Document-type shell files</dt>
+                      <dd>
+                        <ul id="ul_l52_zzd_2m">
+                          <li><varname>typename</varname>.dtd</li>
+                          <li><varname>typename</varname>.xsd</li>
+                          <li><varname>typename</varname>.rnc</li>
+                          <li><varname>typename</varname>.rng</li>
+                        </ul>
+                      </dd>
+                    </dlentry>
+                  </dl>
+                </entry>
+              </row>
+              <row>
+                <entry>Add to end of definition list</entry>
+                <entry namest="c3" nameend="newCol4">
+                  <dl>
+                    <dlentry>
+                      <dt>RELAX NG structural module files</dt>
+                      <dd>
+                        <ul id="ul_eefc504e-3109-4ab5-bbe9-91221b4ecf74">
+                          <li><varname>typename</varname>Mod.rnc</li>
+                          <li><varname>typename</varname>Mod.rng</li>
+                        </ul>
+                      </dd>
+                    </dlentry>
+                    <dlentry>
+                      <dt>RELAX NG domain module files</dt>
+                      <dd>
+                        <ul id="ul_odj_k12_2m">
+                          <li><varname>typename</varname>Domain.rnc</li>
+                          <li><varname>typename</varname>Domain.rng</li>
+                        </ul>
+                      </dd>
+                    </dlentry>
+                    <dlentry>
+                      <dt>RELAX NG constraint module files</dt>
+                      <dd>
+                        <ul id="ul_49a2afe7-c7d2-4c8f-967e-97c6c8ef207d">
+                          <li><varname>constraintname</varname>ConstraintMod.rnc</li>
+                          <li><varname>constraintname</varname>ConstraintMod.rng</li>
+                        </ul>
+                      </dd>
+                    </dlentry>
+                  </dl>
+                </entry>
+              </row>
+              <row>
+                <entry>archSpec/base/recognizedconstraintmechanisms.dita</entry>
+                <entry>
+                  <p>The DITA standard currently recognizes two XML document grammar mechanisms by which conforming DITA vocabulary modules and document types may be constructed: document type
+                    declarations (DTDs) and XML Schema declarations (XSDs).</p>
+                  <p>This specification defines implementation requirements for both of these document constraint mechanisms. The OASIS DITA Technical Committee recognizes that other XML grammar
+                    languages might provide similar modularity and extensibility mechanisms. However, the Technical Committee has not yet defined implementation requirements for those languages so
+                    their conformance cannot be determined.</p>
+                </entry>
+                <entry namest="c3" nameend="newCol4">
+                  <p>The DITA specification currently recognizes <ph rev="1.3">three</ph> XML document grammar mechanisms by which conforming DITA vocabulary modules and document types may be
+                    constructed: document type declarations (DTDs), XML Schema declarations (XSDs)<ph rev="1.3">, and RELAX NG grammars.</ph></p>
+                  <p>This specification defines implementation requirements for <ph rev="1.3">all</ph> of these document constraint mechanisms. The OASIS DITA Technical Committee recognizes that other
+                    XML grammar languages might provide similar modularity and extensibility mechanisms. However, the Technical Committee has not yet defined implementation requirements for those
+                    languages so their conformance cannot be determined.</p>
+                  <p rev="DITA1.3 proposal-13112">Of these three document constraint mechanisms, RELAX NG grammars offer the easiest-to-use syntax and the most expressive constraints. For this reason,
+                    the RELAX NG definitions of the standard DITA vocabularies are the
+                    <?oxy_delete author="ekimber" timestamp="20131207T082929-0600" content="authoritative"?><?oxy_insert_start author="ekimber" timestamp="20131207T082929-0600"?>normative<?oxy_insert_end?>
+                    versions from which the DTD and XSD versions are automatically generated. Open-source tools are available for generating conforming DTD-syntax and XSD-syntax document type shells,
+                    vocabulary modules, and constraint modules from RELAX NG grammars that conform to the coding requirements defined in this specification.</p>
+                </entry>
+              </row>
+              <row>
+                <entry>New topic: Using RELAX NG for DITA document types, vocabulary modules, and constraint modules</entry>
+                <entry/>
+                <entry namest="c3" nameend="newCol4"><xref href="#concept_j2w_cgk_fm" format="dita"/><p>Insert as second child of archSpec/base/ditaspecialization.dita. </p></entry>
+              </row>
+              <row>
+                <entry>New topic, generation of DTD and XSD schemas from RELAX NG</entry>
+                <entry/>
+                <entry namest="c3" nameend="newCol4"><xref href="#concept_j3g_vm4_2m" format="dita"/><p>Insert as third child of archSpec/base/ditaspecialization.dita. </p></entry>
+              </row>
+              <row>
+                <entry morerows="1">archSpec/base/createCustomDocType.dita</entry>
+                <entry>Thus, DITA <term outputclass="OASIS-terminology">does not</term> require that conforming DITA documents have an associated DTD, XSD, or other formal document type definition as
+                  long as all required attributes are explicit in document instances. However, most DITA documents have an associated DTD or XML schema document by which the documents can be validated
+                  using normal XML processors and that can provide default values for the @domains and @class attributes, in particular. In addition, while the DITA specification only defines coding
+                  requirements for DTDs and XML schema documents, conforming DITA documents <term outputclass="OASIS-terminology">MAY</term> use other document type constraint languages, such as RELAX
+                  NG or Schematron.</entry>
+                <entry namest="c3" nameend="newCol4">Thus, DITA <term outputclass="OASIS-terminology">does not</term> require that conforming DITA documents have an associated DTD, XSD, <ph>RELAX NG,
+                  </ph>or other formal document type definition as long as all required attributes are explicit in document instances. However, most DITA documents have an associated DTD<ph rev="1.3"
+                  >, RELAX NG grammar, or </ph>XML schema document by which the documents can be validated using normal XML processors and that can provide default values for the @domains and @class
+                  attributes, in particular. In addition, while the DITA specification only defines coding requirements for DTDs<ph rev="1.3">, RELAX NG grammars, </ph>and XML schema documents,
+                  conforming DITA documents <term outputclass="OASIS-terminology">MAY</term> use other document type constraint languages, such as Schematron.</entry>
+              </row>
+              <row>
+                <entry>For example, a shell document type that is an unmodified copy of the OASIS-provided topic document type shell (topic.dtd or topic.xsd) </entry>
+                <entry namest="c3" nameend="newCol4">For example, a shell document type that is an unmodified copy of the OASIS-provided topic document type shell (<ph rev="1.3">topic.rng, topic.rnc,
+                  topic.dtd,</ph> or topic.xsd)</entry>
+              </row>
+              <row>
+                <entry>New topic</entry>
+                <entry/>
+                <entry namest="c3" nameend="newCol4"><xref href="#concept_ecb_wg2_2m" format="dita"/></entry>
+              </row>
+              <row>
+                <entry>archSpec/base/classatt.dita</entry>
+                <entry>When the @class attribute is declared in a DTD or XSD</entry>
+                <entry namest="c3" nameend="newCol4">When the @class attribute is declared in a <ph rev="1.3">DTD, XSD, or RELAX NG grammar,</ph></entry>
+              </row>
+              <row>
+                <entry>archSpec/base/foreigncontentspec.dita</entry>
+                <entry>New example</entry>
+                <entry namest="c3" nameend="newCol4">Add new example of RELAX NG foreign specialization: <xref href="#concept_aqh_5zt_3h" format="dita"/></entry>
+              </row>
+              <row>
+                <entry>New topic</entry>
+                <entry/>
+                <entry namest="c3" nameend="newCol4"><xref href="#concept_sbf_fn4_2m" format="dita"/></entry>
+              </row>
+              <row>
+                <entry>New topic</entry>
+                <entry/>
+                <entry namest="c3" nameend="newCol4"><xref href="#concept_ebs_mn4_2m" format="dita"/></entry>
+              </row>
+              <row>
+                <entry namest="c1" nameend="newCol4">For the Technical Content section, all the topics have trailing "Modules" sections that must be updated to reflect the RELAX NG modules. I have not
+                  bothered to show the original except for Concept, which establishes the pattern.</entry>
+              </row>
+              <row>
+                <entry>archSpec/technicalContent/dita_concept_topic.dita</entry>
+                <entry>In section titled "Modules":<p>The following DITA modules are provided for the concept topic:</p><sl>
+                  <sli>concept.mod, concept.ent (DTD)</sli>
+                  <sli>conceptMod.xsd, conceptGrp.xsd (Schema)</sli>
+                  </sl></entry>
+                <entry namest="c3" nameend="newCol4">
+                  <p>The following DITA modules are provided for the concept topic:</p>
+                  <sl>
+                    <sli>concept.mod, concept.ent (DTD),</sli>
+                    <sli>conceptMod.xsd, conceptGrp.xsd (Schema), conceptMod.rnc (RELAX NG compact syntax), conceptMod.rng (RELAX NG XML syntax)</sli>
+                  </sl>
+                </entry>
+              </row>
+              <row>
+                <entry>archSpec/technicalContent/dita_reference_topic.dita</entry>
+                <entry/>
+                <entry namest="c3" nameend="newCol4">
+                  <sl>
+                    <sli>reference.mod, reference.ent (DTD), </sli>
+                    <sli><ph rev="1.3">referenceMod.rnc (RELAX NG compact syntax)</ph></sli>
+                    <sli><ph rev="1.3">referenceMod.rng (RELAX NG XML syntax)</ph></sli>
+                    <sli>referenceMod.xsd, referenceGrp.xsd (Schema)</sli>
+                  </sl>
+                </entry>
+              </row>
+              <row>
+                <entry>archSpec/technicalContent/dita_generic_task_topic.dita</entry>
+                <entry/>
+                <entry namest="c3" nameend="newCol4">
+                  <sl>
+                    <sli>task.mod, task.ent(DTD), </sli>
+                    <sli><ph rev="1.3">taskMod.rnc (RELAX NG compact syntax)</ph></sli>
+                    <sli><ph rev="1.3">taskMod.rng (RELAX NG XML syntax)</ph></sli>
+                    <sli>taskMod.xsd, taskGrp.xsd (Schema)</sli>
+                  </sl>
+                </entry>
+              </row>
+              <row>
+                <entry>archSpec/technicalContent/dita_task_topic.dita</entry>
+                <entry/>
+                <entry namest="c3" nameend="newCol4">
+                  <sl>
+                    <sli>task.mod. task.ent, strictTaskbody constraint (DTD)</sli>
+                    <sli><ph rev="1.3">taskMod.rnc, strictTaskBodyConstraint.rnc (RELAX NG compact syntax)</ph></sli>
+                    <sli><ph rev="1.3">taskMod.rng, strictTaskBodyConstraint.rng (RELAX NG XML syntax)</ph></sli>
+                    <sli>taskMod.xsd, taskGrp.xsd, strictTaskbodyConstraintMod.xsd (Schema)</sli>
+                  </sl>
+                </entry>
+              </row>
+              <row>
+                <entry>archSpec/technicalContent/dita_machinerytask_topic.dita</entry>
+                <entry/>
+                <entry namest="c3" nameend="newCol4">
+                  <sl>
+                    <sli>machineryTask.dtd (DTD), machineryTaskbodyConstraint.mod</sli>
+                    <sli>machineryTask.rnc, machineryTaskbodyConstraint.rnc (RELAX NG compact syntax)</sli>
+                    <sli>machineryTask.rng, machineryTaskbodyConstraint.rng (RELAX NG XML syntax)</sli>
+                    <sli> machineryTask.xsd, machineryTaskbodyConstraintMod.xsd, machineryTaskbodyConstraintIntMod.xsd (Schema)</sli>
+                  </sl>
+                </entry>
+              </row>
+              <row>
+                <entry>archSpec/technicalContent/dita_glossary_topic.dita</entry>
+                <entry/>
+                <entry namest="c3" nameend="newCol4">
+                  <sl>
+                    <sli>glossentry.dtd, glossentry.ent, glossentry.mod (DTD)</sli>
+                    <sli>glossentry.rnc, glossentryMod.rnc (RELAX NG compact syntax)</sli>
+                    <sli>glossentry.rng, glossentryMod.rng (RELAX NG XML syntax)</sli>
+                    <sli>glossentryMod.xsd, glossentryGrp.xsd (Schema)</sli>
+                  </sl>
+                </entry>
+              </row>
+              <row>
+                <entry>archSpec/technicalContent/dita_glossarygroup_topic.dita</entry>
+                <entry/>
+                <entry namest="c3" nameend="newCol4">
+                  <sl>
+                    <sli>glossgroup.dtd, glossgroup.ent, glossgroup.mod (DTD) </sli>
+                    <sli>glossgroup.rnc, glossgroupMod.rnc (RELAX NG compact syntax)</sli>
+                    <sli>glossgroup.rng, glossgroupMod.rng (RELAX NG XML syntax)</sli>
+                    <sli>glossgroup.xsd, (Schema)</sli>
+                  </sl>
+                </entry>
+              </row>
+              <row>
+                <entry>archSpec/technicalContent/dita_spec_intro_bookmap.dita</entry>
+                <entry/>
+                <entry namest="c3" nameend="newCol4">
+                  <sl>
+                    <sli>bookmap.dtd, bookmap.ent, <?Pub Caret?>bookmap.mod (DTD)</sli>
+                    <sli>bookmap.rnc, bookmapMod.rnc (RELAX NG compact syntax)</sli>
+                    <sli>bookmap.rng, bookmapMod.rng (RELAX NG XML syntax)</sli>
+                    <sli>bookmap.xsd, bookmapGrp.xsd, bookmapMod.xsd (Schema)</sli>
+                  </sl>
+                </entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+      </section>
+    </body>
+    <concept
+      id="concept_j2w_cgk_fm">
+      <title>Using RELAX NG for DITA document type shells, vocabulary modules, and constraint modules</title>
+      <conbody>
+        <p>The RELAX NG specification <?oxy_insert_start author="ekimber" timestamp="20131207T092121-0600"?>[RNG] <?oxy_insert_end?>defines two syntaxes for RELAX NG grammars: the XML syntax and the
+          compact syntax<?oxy_insert_start author="ekimber" timestamp="20131207T093122-0600"?> [RNG Compact Syntax]<?oxy_insert_end?>. The two syntaxes are functionally equivalent and either syntax
+          may be reliably converted into the other (e.g., using the open-source Trang tool). However, the XML syntax, because it is
+          XML<?oxy_delete author="ekimber" timestamp="20131207T083009-0600" content=" "?><?oxy_insert_start author="ekimber" timestamp="20131207T083009-0600"?>-<?oxy_insert_end?>based, allows the easy
+          use of foreign markup within RELAX NG grammars (the RELAX NG compact syntax allows the use of foreign vocabularies but it's processing is not as convenient as it is for the RELAX NG XML
+          syntax). The DITA coding requirements depend on this feature of RELAX NG in order to capture metadata about document type shells and modules required in order to generate DTD- and XSD-syntax
+          versions of the files that themselves conform to the DITA coding requirements. In addition, the foreign vocabulary feature can be used to include Schematron rules directly in RELAX NG
+          grammars. Schematron rules can check rules that are not expressible with RELAX NG directly or that would be inconvenient to
+          express<?oxy_insert_start author="ekimber" timestamp="20131215T111212-0600"?>[SCHEMATRON]<?oxy_insert_end?>.<?oxy_insert_start author="ekimber" timestamp="20131207T093158-0600"?><note>The
+          DITA specification editors maintain utilities for generating conforming DITA DTD- and XSD-syntax document type shells and modules from DITA RELAX NG grammars. See [DITA
+          RNG2DTDXSD].</note><?oxy_insert_end?></p>
+        <p>In addition, the RELAX NG XML syntax provides a general grouping element type, &lt;div>, that allows for arbitrary organization and grouping of patterns within grammar documents. Such
+          grouping tends to make the grammar documents easier to work with, especially in XML-aware editors. The use or non-use of the RELAX NG &lt;div> element does not affect the meaning of the
+          patterns defined in a RELAX NG schema. </p>
+        <p>For these reasons, the
+          <?oxy_delete author="ekimber" timestamp="20131207T083144-0600" content="authoritative"?><?oxy_insert_start author="ekimber" timestamp="20131207T083144-0600"?>normative<?oxy_insert_end?>
+          version of all OASIS-defined DITA document type shells, vocabulary modules, and constraint modules use the RELAX NG XML syntax. The DITA RELAX NG coding requirements are defined for the
+          RELAX NG XML syntax. Conforming RELAX NG compact syntax modules <term outputclass="OASIS-terminology">MUST</term> reflect the same file naming and organization requirements as the RELAX NG
+          XML syntax requirements, substituting ".rnc" for ".rng" as the filename extension. By definition, RELAX NG compact syntax modules generated from conforming RELAX NG XML syntax modules such
+          that there is a one-to-one correspondence between XML files and compact syntax files are conforming. While the resulting compact syntax files are able to include the information from foreign
+          vocabularies and annotations, there is no requirement to be able to process those annotations when generating XML-syntax RELAX NG declarations. Thus, generation of XML syntax modules from
+          conforming compact syntax modules need only result in minimally-conforming XML syntax modules..</p>
+        <p>The DITA use of RELAX NG depends on the companion <cite>RELAX NG DTD Compatibility</cite> specification<?oxy_insert_start author="ekimber" timestamp="20131215T111423-0600"?>[RNG DTD
+          Compatibility]<?oxy_insert_end?>, which provides a mechanism for defining default attribute values, as well as embedded documentation. Processors that use RELAX NG to get the full infoset
+          for DITA documents for which not all required attributes are present in document instances
+          <?oxy_delete author="ekimber" timestamp="20131207T082039-0600" content="must"?><?oxy_insert_start author="ekimber" timestamp="20131207T082039-0600"?>has to<?oxy_insert_end?> implement the
+          DTD compatibility specification in order to get default attribute values (e.g., values for @domains and @class). The DTD compatibility specification defines the namespace name
+          "http://relaxng.org/ns/compatibility/annotations/1.0" which is bound to the prefix "a" by
+          convention<?oxy_insert_start author="ekimber" timestamp="20131207T083321-0600"?>.<?oxy_insert_end?><?oxy_delete author="ekimber" timestamp="20131207T083318-0600" content=", e.g."?>
+          <?oxy_insert_start author="ekimber" timestamp="20131207T083328-0600"?>The tag <?oxy_insert_end?>"&lt;a:documentation>" refers to the &lt;documentation> element type from the
+          "http://relaxng.org/ns/compatibility/annotations/1.0" namespace as defined by the DTD compatibility specification.</p>
+        <p>RELAX NG grammars for DITA document type shells, vocabulary modules, and constraint modules ("DITA grammars") <term outputclass="OASIS-terminology">MAY</term> use the &lt;a:documentation>
+          element anywhere foreign elements are allowed by RELAX NG. DITA grammars <term outputclass="OASIS-terminology">MAY</term> use &lt;div> to group pattern declarations without restriction.</p>
+        <p>RELAX NG grammars for DITA markup <term outputclass="OASIS-terminology">MAY</term> include embedded Schematron rules or any other foreign vocabulary. Processors <term
+          outputclass="OASIS-terminology">MAY</term> ignore any foreign vocabularies within DITA grammars not in the "http://relaxng.org/ns/compatibility/annotations/1.0" or
+          "http://dita.oasis-open.org/architecture/2005/" namespaces.</p>
+        <p>Each section of a DITA grammar document is either introduced by a comment or represented by a &lt;div> element with <?oxy_insert_start author="ekimber" timestamp="20131207T083437-0600"?>a
+          <?oxy_insert_end?>child &lt;a:documentation> element containing the section header. Grammars <term outputclass="OASIS-terminology">SHOULD</term> use these divs or comments to identify each
+          section of the grammar. Sections <term outputclass="OASIS-terminology">SHOULD</term> occur in the order specified in these coding requirements. Grammars <term outputclass="OASIS-terminology"
+          >SHOULD</term> have an initial set of comments or a &lt;moduleMetadata> element that describes the grammar document and indicates the URNs or absolute URLs by which the grammar should be
+          referenced in RELAX NG grammar references (see <xref href="#concept_lbt_ct4_2m" format="dita"/>).</p>
+        <p>Section titles using &lt;div> <term outputclass="OASIS-terminology">SHOULD</term> have the
+          form:<codeblock>&lt;div>
+  &lt;a:documentation><i>SECTION TITLE</i>&lt;/a:documentation>
+ ...
+&lt;/div></codeblock></p>
+        <?oxy_delete author="ekimber" timestamp="20131207T093335-0600" content="&lt;p/&gt;"?>
+        <p>RELAX NG is capable of expressing constraints that are more precise than is possible with either DTDs or XSDs. For example, RELAX NG patterns can be context specific such that the same
+          element type may allow different content or attributes in different contexts. Where generation of DTD or XSD schema modules from RELAX NG modules is a requirement care
+          <?oxy_delete author="ekimber" timestamp="20131207T080825-0600" content="must"?><?oxy_insert_start author="ekimber" timestamp="20131207T080825-0600"?>should<?oxy_insert_end?> be taken to
+          avoid RELAX NG features that cannot be translated into DTD or XSD constructs. When RELAX NG is used directly for DITA document validation, the document type shells for those documents <term
+          outputclass="OASIS-terminology">MAY</term> integrate constraint modules that use the full power of RELAX NG to enforce constraints that cannot be enforced by DTDs or XSD schemas.</p>
+      </conbody>
+    </concept>
+    <concept
+      id="concept_j3g_vm4_2m">
+      <title>Generating DTD and XSD Schemas from RELAX NG</title>
+      <shortdesc>RELAX NG XML syntax document type shells and modules can be used to generate DTD- and XSD-syntax document type shells and modules that conform to the DITA coding requirements when the
+        RELAX NG grammar document contains DITA-specific metadata that defines the module type, module header comment, and public identifiers for the components to be generated. All RELAX NG grammars
+        defined by the DITA specification include this metadata.</shortdesc>
+      <conbody>
+        <p>Of the three DITA-recognized document constraint languages, RELAX NG provides the simplest syntax for specifying the integration of vocabulary and constraint modules into document type
+          shells. This makes RELAX NG ideally suited as the base format for defining DITA vocabulary. However, many, if not most DITA-aware tools require the use of DTDs or XSD schemas as of version
+          1.3 of the DITA specification. Thus there is a practical requirement to generate DTDs and XSD schemas from RELAX
+          NG.<?oxy_insert_start author="ekimber" timestamp="20131207T093436-0600"?><note>The DITA specification editors maintain utilities for generating conforming DITA DTD- and XSD-syntax document
+          type shells and modules from DITA RELAX NG grammars. See [DITA RNG2DTDXSD].</note><?oxy_insert_end?></p>
+        <p>The generation of DTD and XSD modules requires additional metadata that is not inherent in the grammar definition:<ul id="ul_vfp_sp4_2m">
+          <li>The module type (document type shell, vocabulary module, or constraint module)</li>
+          <li>The header comment for the file</li>
+          <li>The module short name for vocabulary and constraint modules</li>
+          <li>The public identifiers to use for each component file to be generated</li>
+          <li>The @domains attribute contribution for vocabulary and constraint modules</li>
+          <?oxy_insert_start author="ekimber" timestamp="20131207T083831-0600"?>
+          <li>For foreign vocabularies, the DTD and XSD files to include for those vocabularies</li>
+          <?oxy_insert_end?>
+          </ul></p>
+        <p>This metadata can be defined using the &lt;moduleDesc> element within a RELAX NG &lt;grammar> element<?oxy_insert_start author="ekimber" timestamp="20131215T112736-0600"?> and attributes in
+          the DITA architecture namespace on specific declarations<?oxy_insert_end?>.</p>
+      </conbody>
+    </concept>
+      <concept
+        id="concept_lbt_ct4_2m">
+        <title>Module Description Markup for use in DITA-specific RELAX NG grammars</title>
+        <shortdesc>The &lt;moduleDesc> element enables specification of the metadata required in order to generate from RELAX NG grammars DTD and XSD components that conform to the DITA coding
+          requirements.</shortdesc>
+        <conbody>
+          <p>The use of &lt;moduleDesc> is not required. However, when it is used, the &lt;moduleDesc> element <term outputclass="OASIS-terminology">MUST</term> be specified as a direct child of the
+          RELAX NG &lt;grammar> element and <term outputclass="OASIS-terminology">SHOULD</term> be the first child of &lt;grammar>. The &lt;moduleDesc> element functions as a foreign element as
+          defined in the RELAX NG specification.
+          <?oxy_delete author="ekimber" timestamp="20131207T081401-0600" content="As a foreign element, it is required by RELAX NG rules to be in a namespace that is different from any RELAX NG namespaces. "?>The
+          &lt;moduleDesc> element is defined as a specialization of &lt;topic>. Because it
+          <?oxy_delete author="ekimber" timestamp="20131207T081406-0600" content="must be"?><?oxy_insert_start author="ekimber" timestamp="20131207T081406-0600"?>is<?oxy_insert_end?> in a namespace,
+          it cannot be a strictly-conforming DITA topic as DITA elements may not be in a namespace. However, if the &lt;moduleDesc> element is processed in terms of the @class attributes it will be
+          recognized as a DITA topic and otherwise conforms to all rules for conforming topic specializations.<?oxy_insert_start author="ekimber" timestamp="20131207T081420-0600"?><draft-comment
+          author="ekimber">The &lt;moduleDesc> element does not absolutely have to be in a namespace--it could specify the no namespace (xml:ns="") but it just seems like better practice to have it be
+          in the DITA namespace for use within grammar documents. It's also not strictly speaking required that the markup also be a topic but it seemed appropriate to have it be a topic so that
+          everything is within the DITA world. I also wanted to avoid creating another completely standalone vocabulary like DITAVAL that had no relation to anything else in
+          DITA.</draft-comment><?oxy_insert_end?></p>
+          <p>The &lt;moduleDesc> element type is defined in the vocabulary module file <filepath>vocabularyModuleDescMod.rng</filepath>.</p>
+          <section>
+            <title>Namespace</title>
+            <p>The &lt;moduleDesc> element is in the DITA architecture namespace, "<ph
+              outputclass="xmlnsname">http://dita.oasis-open.org/architecture/2005/</ph>"</p>
+          </section>
+          <section>
+            <title>&lt;moduleDesc> element type</title>
+            <dl>
+              <dlentry>
+                <dt>&lt;moduleDesc></dt>
+                <dd>Contains the module description metadata. Subelements:<dl>
+                  <dlentry>
+                    <dt>&lt;moduleTitle></dt>
+                    <dd>Provides a descriptive title for the module or document type shell. Content is text.</dd>
+                  </dlentry>
+                  <dlentry>
+                    <dt>&lt;headerComment></dt>
+                    <dd>Contains the header comment for the module. The content is text with whitespace preserved (@xml:space value of "preserve"). The header comment is used as the header for all
+                      generated components.</dd>
+                  </dlentry>
+                  <dlentry>
+                    <dt>&lt;moduleMetadata></dt>
+                    <dd>Contains additional metadata for the module or document type shell. Subelements:<dl>
+                      <dlentry>
+                        <dt>&lt;moduleType></dt>
+                        <dd>Indicates the module type. Content is one of the following keywords:<dl>
+                          <dlentry>
+                            <dt>attributedomain</dt>
+                            <dd>The grammar defines an attribute domain</dd>
+                          </dlentry>
+                          <dlentry>
+                            <dt>base</dt>
+                            <dd>The grammar is one of the DITA base modules. Base modules
+                            <?oxy_delete author="ekimber" timestamp="20131207T084129-0600" content="may "?><?oxy_insert_start author="ekimber" timestamp="20131207T084129-0600"?><term
+                            outputclass="OASIS-terminology">MAY</term>
+                            <?oxy_insert_end?>only be defined by the DITA Technical Committee<?oxy_insert_start author="ekimber" timestamp="20131207T084022-0600"?> (e.g., the
+                            <filepath>commonElementsMod.rng</filepath> and <filepath>metaDeclMod.rng</filepath>
+                            modules)<?oxy_insert_end?><?oxy_delete author="ekimber" timestamp="20131207T084021-0600" content="."?></dd>
+                          </dlentry>
+                          <dlentry>
+                            <dt>constraint</dt>
+                            <dd>The grammar defines a constraint module.</dd>
+                          </dlentry>
+                          <dlentry>
+                            <dt>elementdomain</dt>
+                            <dd>The grammar defines an element domain.</dd>
+                          </dlentry>
+                          <dlentry>
+                            <dt>map</dt>
+                            <dd>The grammar defines a map type.</dd>
+                          </dlentry>
+                          <dlentry>
+                            <dt>mapshell</dt>
+                            <dd>The grammar is a document type shell for a map type.</dd>
+                          </dlentry>
+                          <dlentry>
+                            <dt>topic</dt>
+                            <dd>The grammar defines a topic type.</dd>
+                          </dlentry>
+                          <dlentry>
+                            <dt>topicshell</dt>
+                            <dd>The grammar is a document type shell for a topic type.</dd>
+                          </dlentry>
+                          </dl></dd>
+                      </dlentry>
+                      <dlentry>
+                        <dt>&lt;modulePublicIds></dt>
+                        <dd>For vocabulary and constraint modules, defines the public IDs for files generated from the grammar. Each subelement specifies the public identifier to use for a specific
+                          generated file. Subelements:<dl>
+                          <dlentry>
+                            <dt>&lt;dtdMod></dt>
+                            <dd>The public identifier for the DTD-syntax .mod file to be generated from the grammar.</dd>
+                          </dlentry>
+                          <dlentry>
+                            <dt>&lt;dtdEnt></dt>
+                            <dd>The public identifier for the DTD-syntax .ent file to be generated from the grammar. Required for element domain modules, not used for attribute domain modules.</dd>
+                          </dlentry>
+                          <dlentry>
+                            <dt>&lt;rncMod></dt>
+                            <dd>The public identifier for the RELAX NG compact syntax (RNC) module file to be generated from the grammar.</dd>
+                          </dlentry>
+                          <dlentry>
+                            <dt>&lt;rngMod></dt>
+                            <dd>The public identifier for the RELAX NG XML syntax (RNG) module file (the file that contains the &lt;moduleMetadata> element).</dd>
+                          </dlentry>
+                          <dlentry>
+                            <dt>&lt;xsdMod></dt>
+                            <dd>The public identifier for the XSD schema module file to be generated from the grammar.</dd>
+                          </dlentry>
+                          </dl></dd>
+                      </dlentry>
+                      <dlentry>
+                        <dt>&lt;domainsContribution></dt>
+                        <dd>Required for modules, not used for shells. Defines the @domains attribute contribution for the module, e.g. "(topic hi-d)". This is the value that <term
+                          outputclass="OASIS-terminology">MUST</term> be added to the @domains value for root map or topic types that integrate the module.</dd>
+                      </dlentry>
+                      <dlentry>
+                        <dt>&lt;shellPublicIds></dt>
+                        <dd>For document type shells, defines the public IDs for files generated from the grammar. Each subelement specifies the public identifier to use for a specific generated file. Subelements:<dl>
+                          <dlentry>
+                            <dt>&lt;dtdShell></dt>
+                            <dd>The public identifier for the DTD document type shell to be generated from the grammar.</dd>
+                          </dlentry>
+                          <dlentry>
+                            <dt>&lt;rncShell></dt>
+                            <dd>The public identifier for the RELAX NG compact syntax (RNC) document type shell to be generated from the grammar.</dd>
+                          </dlentry>
+                          <dlentry>
+                            <dt>&lt;rngShell></dt>
+                            <dd>The public identifier for the RNG document type shell (the file that contains the &lt;moduleMetadata> element)</dd>
+                          </dlentry>
+                          <dlentry>
+                            <dt>&lt;xsdShell></dt>
+                            <dd>The public identifier for the XSD schema document type shell to be generated from the grammar.</dd>
+                          </dlentry>
+                          </dl></dd>
+                      </dlentry>
+                      </dl></dd>
+                  </dlentry>
+                  </dl></dd>
+              </dlentry>
+            </dl>
+          </section>
+          <example>
+            <title>Example RELAX NG grammars with module metadata</title>
+            <p>A typical vocabulary module, in this case, a topic
+            type:<codeblock><?oxy_insert_start author="ekimber" timestamp="20131207T074700-0600"?>&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;?xml-model href="vocabularyModuleDesc.rng"
+            schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?oxy_insert_end?>&lt;grammar xmlns:dita="http://dita.oasis-open.org/architecture/2005/"
+  xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/"
+  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" 
+  xmlns="http://relaxng.org/ns/structure/1.0" 
+  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+  >
+ &lt;moduleDesc xmlns="http://dita.oasis-open.org/architecture/2005/">
+   &lt;moduleTitle>DITA Module Description Module&lt;/moduleTitle>
+   &lt;headerComment>&lt;![CDATA[
+============================================================= 
+                    HEADER                                     
+ ============================================================= 
+  MODULE:    DITA Module Description                             
+  VERSION:   1.3                                               
+  DATE:      September 2013                                     
+
+  ...
+]]&gt;&lt;/headerComment>
+   &lt;moduleMetadata>
+     &lt;moduleType>topic&lt;/moduleType>
+     &lt;moduleShortName>vocabularyModule&lt;/moduleShortName>
+     &lt;modulePublicIds>
+       &lt;dtdMod>-//OASIS//ELEMENTS DITA Vocabulary Module Description//EN&lt;/dtdMod>
+       &lt;dtdEnt>-//OASIS//ENTITIES DITA Vocabulary Module Description//EN&lt;/dtdEnt>
+       &lt;xsdMod>urn:oasis:names:tc:dita:xsd:vocabularyModuleDescMod.xsd&lt;/xsdMod>
+       &lt;rncMod>urn:oasis:names:tc:dita:rnc:vocabularyModuleDescMod.rnc&lt;/rncMod>
+       &lt;rngMod>urn:oasis:names:tc:dita:rng:vocabularyModuleDescMod.rng&lt;/rngMod>
+     &lt;/modulePublicIds>
+     &lt;domainsContribution>(topic myTopicType)&lt;/domainsContribution>
+   &lt;/moduleMetadata>
+ &lt;/moduleDesc>
+ 
+ ...
+
+&lt;/grammar></codeblock></p>
+            <p>A typical document type shell, in this case, a topic
+            shell:<codeblock><?oxy_insert_start author="ekimber" timestamp="20131207T074807-0600"?>&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;?xml-model href="vocabularyModuleDesc.rng"
+            schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?oxy_insert_end?>&lt;grammar xmlns:dita="http://dita.oasis-open.org/architecture/2005/"
+  xmlns="http://relaxng.org/ns/structure/1.0"
+  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  &lt;moduleDesc xmlns="http://dita.oasis-open.org/architecture/2005/">
+   &lt;moduleTitle>DITA Module Description Module&lt;/moduleTitle>
+   &lt;headerComment>&lt;![CDATA[
+============================================================= 
+                    HEADER                                     
+ ============================================================= 
+  MODULE:    DITA Module Description Topic Type Shell                           
+  VERSION:   1.3                                               
+  DATE:      September 2013                                     
+
+  ...
+
+]]&gt;&lt;/headerComment>
+   &lt;moduleMetadata>
+     &lt;moduleType>topicshell&lt;/moduleType>
+     &lt;moduleShortName>vocabularyModule&lt;/moduleShortName>
+     &lt;shellPublicIds>
+       &lt;dtdShell>-//OASIS//DTD DITA Vocabulary Module Description//EN&lt;/dtdShell>
+       &lt;xsdShell>urn:oasis:names:tc:dita:xsd:vocabularyModuleDesc.xsd&lt;/xsdShell>
+       &lt;rncShell>urn:oasis:names:tc:dita:rnc:vocabularyModuleDesc.rnc&lt;/rncShell>
+       &lt;rngShell>urn:oasis:names:tc:dita:rng:vocabularyModuleDesc.rng&lt;/rngShell>
+     &lt;/shellPublicIds>
+   &lt;/moduleMetadata>
+ &lt;/moduleDesc>
+
+ ...
+
+&lt;/grammar></codeblock></p>
+          </example>
+        </conbody>
+      </concept>
+    <concept
+      id="concept_ecb_wg2_2m">
+      <title>RELAX NG document-type shell: Coding requirements</title>
+      <shortdesc>A document type shell integrates one or more topic type or map type modules, zero or more domain modules, and zero or more constraint modules.</shortdesc>
+      <conbody>
+        <p>RELAX NG document type shells <term outputclass="OASIS-terminology"
+          ><?oxy_delete author="ekimber" timestamp="20131215T113115-0600" content="may not"?><?oxy_insert_start author="ekimber" timestamp="20131215T113116-0600"?>MAY NOT<?oxy_insert_end?></term>
+          directly declare element types or attributes. A RELAX NG document type shell <term outputclass="OASIS-terminology">MUST</term> conform to the following coding requirements as well as the
+          requirements defined in <xref href="#concept_j2w_cgk_fm" format="dita"/>.</p>
+        <p>RELAX NG modules are self-integrating such that document type shells need only include vocabulary modules, there is no separate specification required to integrate domain and nested topic
+          elements into base content models. Likewise, constraint modules simply override the patterns they constrain directly in the constraint module itself. However, the @domains attribute default
+          value cannot be automatically constructed using RELAX NG facilities. Thus, the @domains attribute value
+          <?oxy_delete author="ekimber" timestamp="20131207T081709-0600" content="must"?><?oxy_insert_start author="ekimber" timestamp="20131207T081709-0600"?>has to<?oxy_insert_end?> be directly
+          specified in the document type shell.<?oxy_insert_start author="ekimber" timestamp="20131215T104613-0600"?> In addition, the names of element types that define @id attributes of type "ID"
+          must be listed in the redefinition of the "any" pattern required in each document type shell.<?oxy_insert_end?></p>
+        <note>For modules that use the &lt;moduleDesc> element, the module's @domains attribute contribution <?oxy_insert_start author="ekimber" timestamp="20131215T104743-0600"?><term
+          outputclass="OASIS-terminology">SHOULD</term>
+          <?oxy_insert_end?><?oxy_delete author="ekimber" timestamp="20131215T104730-0600" content="should "?>be in the &lt;domainsContribution> element. When this is the case, it
+          <?oxy_delete author="ekimber" timestamp="20131215T104749-0600" content="should"?><?oxy_delete author="ekimber" timestamp="20131215T104758-0600" content=" be"?><?oxy_insert_start author="ekimber" timestamp="20131215T104805-0600"?>is<?oxy_insert_end?>
+          possible for tools to automatically construct the @domains value in document type shells as an aid to document type shell authoring or automatic generation.</note>
+        <p>Constraint modules are used by importing the constraint module rather than the module the constraint modifies. Constraint modules refer to the base module to be constrained and redefine
+          patterns as needed to implement the constraint. In addition, you can disallow base types extended by domains by overriding the base type's pattern in the document type shell within the
+          reference to the domain module for the domain. In this case, the constraint represented by the pattern redefinition <term outputclass="OASIS-terminology">MUST</term> be declared in the
+          @domains attribute. The @domains contribution for the constraint may be documented using a &lt;domainsContribution> element from the DITA namespace. For
+          example:<codeblock>  ...
+  &lt;div>
+    &lt;a:documentation>MODULE INCLUSIONS&lt;/a:documentation>
+    &lt;include href="topicMod.rng"/>
+    &lt;include href="hazardstatementDomainMod.rng"/>
+    &lt;include href="highlightDomainMod.rng">
+      &lt;<?oxy_insert_start author="ekimber" timestamp="20131215T113332-0600"?>ditaarch:<?oxy_insert_end?>domainsContribution<?oxy_delete author="ekimber" timestamp="20131215T113337-0600" content=" xmlns=&quot;http://dita.oasis-open.org/architecture/2005/&quot;"?>
+        >(topic hi-d-noUnderline-c)&lt;/<?oxy_insert_start author="ekimber" timestamp="20131215T113341-0600"?>ditaarch:<?oxy_insert_end?>domainsContribution>
+      &lt;define name="u">
+        &lt;notAllowed>&lt;/notAllowed>
+      &lt;/define>
+    &lt;/include>
+    &lt;include href="indexingDomainMod.rng"/>
+    &lt;include href="utilitiesDomainMod.rng"/>
+  &lt;/div>
+  ...</codeblock></p>
+        <p> </p>
+        <dl>
+          <dlentry>
+            <dt>Root element declaration</dt>
+            <dd>
+              <p>Document type shells <term
+                outputclass="OASIS-terminology">MUST</term> use the RELAX NG start declaration to specify the allowed root element defined by the document type, either the root topic type or root map
+                type defined by the document type shell. The start declaration <term
+                outputclass="OASIS-terminology">MUST</term> specify exactly one allowed root element as a reference to the <codeph><i>tagname</i>.element</codeph> pattern for the root element. The
+                root element declaration <term
+                outputclass="OASIS-terminology">SHOULD</term> start with the header "ROOT ELEMENT DECLARATION".</p>
+              <p>For example:</p>
+              <codeblock>&lt;div>
+  &lt;a:documentation>ROOT ELEMENT DECLARATION&lt;/a:documentation>
+  &lt;start combine="choice">
+    &lt;ref name="topic.element"/>
+  &lt;/start>
+&lt;/div></codeblock>
+            </dd>
+          </dlentry>
+          <dlentry>
+            <dt>Module inclusions</dt>
+            <dd>
+              <p>The document type shell <?oxy_delete author="ekimber" timestamp="20131207T081753-0600" content="must"?><?oxy_insert_start author="ekimber" timestamp="20131207T081753-0600"?>has
+                to<?oxy_insert_end?> include at least the module for the map or topic type the shell is
+                configuring<?oxy_attributes rev="&lt;change type=&quot;inserted&quot; author=&quot;ekimber&quot; timestamp=&quot;20131215T103906-0600&quot; /&gt;"?><ph rev="DITA1.3 proposal-13121"
+                ><?oxy_insert_start author="ekimber" timestamp="20131215T103619-0600"?>, as well as the modules for any domain or additional structural modules<?oxy_insert_end?>.
+                <?oxy_insert_start author="ekimber" timestamp="20131215T103719-0600"?>The document type shell <term outputclass="OASIS-terminology">MUST</term> include any domain or structural modules
+                named as dependencies in the @domains attribute value.</ph>
+                <?oxy_insert_end?>The module inclusion section <term outputclass="OASIS-terminology">SHOULD</term> start with the header "MODULE INCLUSIONS".</p>
+              <p>For example:</p>
+              <codeblock>&lt;div>
+  &lt;a:documentation>MODULE INCLUSIONS&lt;/a:documentation>
+  &lt;include href="topicMod.rng"/>
+  &lt;include href="highlightDomainMod.rng"/>
+  &lt;include href="utilitiesDomainMod.rng"/>
+  &lt;include href="indexingDomainMod.rng"/>
+  &lt;include href="hazardstatementDomainMod.rng"/>
+&lt;/div></codeblock>
+            </dd>
+          </dlentry>
+          <dlentry>
+            <dt>Override of "any" patterns</dt>
+            <dd>
+              <p>The "any" pattern is used as content for the <keyword>foreign</keyword>, <keyword>unknown</keyword> and <keyword>required-cleanup</keyword> elements. The "any" pattern should accept
+                any element with any content or attributes. The RELAX NG DTD compatibility processing<?oxy_insert_start author="ekimber" timestamp="20131215T113524-0600"?> rules<?oxy_insert_end?>
+                require<?oxy_delete author="ekimber" timestamp="20131215T113527-0600" content="s"?> that any elements that match two or more patterns have consistent declarations for all attributes
+                with respect to their ID type. In DITA, &lt;topic> and all specializations of &lt;topic>, &lt;map > and all specializations of &lt;map>, &lt;anchor>
+                <?oxy_insert_start author="ekimber" timestamp="20131215T101400-0600"?>and all specializations of &lt;anchor> <?oxy_insert_end?>declare the @id attribute as an XML ID (datatype "ID").
+                This requires that shells override the "any" pattern to exclude these element types from the pattern that matches any element name with any attributes and any content, because this
+                pattern will match the @id attribute without specifying that it is an XML ID, thus resulting in an ID type conflict. These elements should be added explicitly to the choice group that
+                defines the "any" pattern and this is done by contributing these elements to the "idElements" pattern. The set of element types that
+                <?oxy_delete author="ekimber" timestamp="20131207T081817-0600" content="must"?><?oxy_insert_start author="ekimber" timestamp="20131207T081817-0600"?>have to<?oxy_insert_end?> be
+                reflected in this pattern depends on the set of map or topic types and domains integrated by the shell, but at a minimum, any topic types or map types
+                <?oxy_delete author="ekimber" timestamp="20131207T081824-0600" content="must"?><?oxy_insert_start author="ekimber" timestamp="20131207T081824-0600"?>have to<?oxy_insert_end?> be
+                listed. For maps, the &lt;anchor> element and any specializations of &lt;anchor>
+                <?oxy_delete author="ekimber" timestamp="20131207T081831-0600" content="must"?><?oxy_insert_start author="ekimber" timestamp="20131207T081831-0600"?>have to<?oxy_insert_end?> be
+                listed. In addition, foreign vocabularies intregrated through specializations of &lt;foreign> may also define similar patterns that require the same accommodation (see <xref
+                href="#concept_aqh_5zt_3h" format="dita"/>).</p>
+              <?oxy_insert_start author="ekimber" timestamp="20131215T101453-0600"?>
+              <p>The pattern "idElements" is defined in the commonElementsMod.rng module as an empty pattern. Modules that define element types with @id attributes of type ID then contribute to this
+                pattern (see <xref href="#concept_vmn_pbr_2m" format="dita"/>).</p>
+              <?oxy_insert_end?>
+              <p>This section <term outputclass="OASIS-terminology">SHOULD</term> start with the header "OVERRIDE OF "any" PATTERNS".</p>
+              <p>The general structure of this pattern
+                is:<codeblock>&lt;div>
+  &lt;a:documentation>OVERRIDE OF "any" PATTERNS&lt;/a:documentation>
+  &lt;define name="any">
+    &lt;zeroOrMore>
+      &lt;choice>
+        &lt;ref name="<?oxy_insert_start author="ekimber" timestamp="20131215T101650-0600"?>idElements<?oxy_insert_end?><?oxy_delete author="ekimber" timestamp="20131215T101649-0600" content="&lt;varname&gt;tagname&lt;/varname&gt;.element"?>"/>
+        &lt;element>
+          &lt;anyName>
+            &lt;except>
+              &lt;name><varname>tagname</varname>&lt;/name>
+            &lt;/except>
+          &lt;/anyName>
+          &lt;zeroOrMore>
+            &lt;attribute>
+              &lt;anyName/>
+            &lt;/attribute>
+          &lt;/zeroOrMore>
+          &lt;ref name="any"/>
+        &lt;/element>
+        &lt;text/>
+      &lt;/choice>
+    &lt;/zeroOrMore>
+  &lt;/define>
+&lt;/div></codeblock></p>
+              <p>Where the <?oxy_delete author="ekimber" timestamp="20131215T101702-0600" content="&amp;lt;ref&gt; and "?>&lt;name>
+                element<?oxy_insert_start author="ekimber" timestamp="20131215T113735-0600"?> within the &lt;except> element
+                <?oxy_insert_end?><?oxy_delete author="ekimber" timestamp="20131215T101706-0600" content="s"?>
+                <?oxy_delete author="ekimber" timestamp="20131215T101708-0600" content="are"?><?oxy_insert_start author="ekimber" timestamp="20131215T101708-0600"?>is<?oxy_insert_end?> repeated for
+                each element type used from the shell that defines the @id attribute <?oxy_insert_start author="ekimber" timestamp="20131215T101717-0600"?>as type
+                "ID".<?oxy_insert_end?><?oxy_delete author="ekimber" timestamp="20131215T101715-0600" content="directly."?></p>
+            </dd>
+          </dlentry>
+        </dl>
+        <example>
+          <title>Sample topic type shell</title>
+          <p>Strict task document type shell:</p>
+          <codeblock><coderef href="org.oasis-open.dita.relaxng/doctypes/technicalContent/rng/task.rng"/></codeblock>
+        </example>
+        <example>
+          <title>Sample map type shell</title>
+          <p>Base map document type shell:</p>
+          <codeblock><coderef href="org.oasis-open.dita.relaxng/doctypes/base/rng/basemap.rng"/>
+          </codeblock>
+        </example>
+      </conbody>
+    </concept>
+    <concept
+      id="concept_sbf_fn4_2m">
+      <title>RELAX NG grammar specialization module coding requirements</title>
+      <shortdesc>To be extensible and backward compatible, DITA requires that RELAX NG implementations of structural and domain specialization modules conform to well-defined implementation (coding)
+        requirements.</shortdesc>
+      <conbody>
+        <p>These coding requirements implement the specialization architecture with the capabilities and within the limitations of the RELAX NG grammar. Structural specializations, element domain
+          specializations, and attribute domain specializations <term
+          outputclass="OASIS-terminology">MUST</term> conform to these requirements  as well as the requirements defined in <xref
+          href="#concept_j2w_cgk_fm"
+          format="dita"/>.</p>
+        <p>Unlike DTD and XSD-schema modules, RELAX NG modules are self integrating such that document type shells need only include the
+          module<?oxy_insert_start author="ekimber" timestamp="20131215T113842-0600"?>,<?oxy_insert_end?><?oxy_delete author="ekimber" timestamp="20131215T113840-0600" content=" and "?>include the
+          module's @domains contribution in the declaration of the @domains attribute default value<?oxy_insert_start author="ekimber" timestamp="20131215T113845-0600"?>, and list element types that
+          define the @id attribute as type "ID" in the override of the "any" pattern.<?oxy_insert_end?><?oxy_delete author="ekimber" timestamp="20131215T113845-0600" content="."?></p>
+        <p>All vocabulary and constraint modules
+          <?oxy_delete author="ekimber" timestamp="20131207T081849-0600" content="must"?><?oxy_insert_start author="ekimber" timestamp="20131207T081849-0600"?><term outputclass="OASIS-terminology"
+          >MUST</term>
+          <?oxy_insert_end?> document their @domains attribute contribution. This <term outputclass="OASIS-terminology"
+          ><?oxy_delete author="ekimber" timestamp="20131207T081859-0600" content="may"?><?oxy_insert_start author="ekimber" timestamp="20131207T081859-0600"?>MAY<?oxy_insert_end?></term> be done
+          using the &lt;domainsContribution> element within a &lt;moduleDesc> element or using a normal XML comment or &lt;a:documentation> element. Grammars that are intended to be used for automatic
+          generation of DTD- and XSD-syntax modules <term outputclass="OASIS-terminology">MUST</term> use the &lt;domainsContribution> element.</p>
+      </conbody>
+      <concept
+        id="concept_vmn_pbr_2m">
+        <title>General element type declaration requirements</title>
+        <shortdesc>Structural and element domain vocabulary modules <term
+          outputclass="OASIS-terminology">MUST</term> reflect the same coding requirements for element type declarations.</shortdesc>
+        <conbody>
+          <section>
+            <title>Module names</title>
+            <p>Each vocabulary module has a short name that is used to construct file names, pattern names, and other names used in associated declarations. Modules <term outputclass="OASIS-terminology">MAY</term> also have
+              abbreviated names that further shorten the short name, for example "sw" for the "software" domain, where "software" is the short name and "sw" is the abbreviated name. </p>
+            <p>For structural modules, the module name <term outputclass="OASIS-terminology">MUST</term> be the element type name of the top-level topic or map type defined by the module, such as "concept" or "bookmap".</p>
+            <p>For element domain modules, the module name <term outputclass="OASIS-terminology">MUST</term> be a name that reflects the subject domain to which the domain applies, such as "highlight"
+              or "software". Domain module names
+              <?oxy_delete author="ekimber" timestamp="20131215T114050-0600" content="should "?><?oxy_insert_start author="ekimber" timestamp="20131215T114050-0600"?><term
+              outputclass="OASIS-terminology">SHOULD</term>
+              <?oxy_insert_end?>be sufficiently unique that they are unlikely to conflict with any other domains.</p>
+          </section>
+          <section>
+            <title>Module files</title>
+            <p>A RELAX NG vocabulary module consists of a single module file. </p>
+            <p>For structural modules, the file name is the module name plus "Mod" plus an extension of either ".rng" for RELAX NG XML syntax modules or ".rnc" for RELAX NG compact syntax modules,
+              e.g., "<filepath>conceptMod.rng</filepath>", "<filepath>glossentryMod.rnc</filepath>".</p>
+            <p>For domain modules, the file name is the domain name plus <filepath>DomainMod</filepath> plus an extension of either ".rng" for RELAX NG XML syntax modules or ".rnc" for RELAX NG
+              compact syntax modules, e.g. <filepath>highlightDomainMod.rng</filepath>, <filepath>programmingDomainMod.rnc</filepath>.</p>
+          </section>
+          <section
+            id="section_AF5B8ABA77DA4474A0AF0DF0AFD8E018">
+            <title>Element definitions</title>
+            <p>A structural or element domain vocabulary module <term outputclass="OASIS-terminology">MUST</term> contain a declaration for each specialized element type named by the module. While the
+              XML standard allows content models to refer to undeclared element types, all element types named in content models or attribute list declarations within a vocabulary module <term
+              outputclass="OASIS-terminology">MUST</term> have a RELAX NG element declaration, in one of<?oxy_insert_start author="ekimber" timestamp="20131207T084411-0600"?> the
+              following<?oxy_insert_end?>:<ul id="ul_n1b_vbr_2m">
+              <li>The vocabulary module</li>
+              <li>A base module of which the vocabulary module is a direct or indirect specialization</li>
+              <li>A required domain<?oxy_attributes rev="&lt;change type=&quot;inserted&quot; author=&quot;ekimber&quot; timestamp=&quot;20131215T115846-0600&quot; /&gt;"?><ph
+                rev="DITA1.3 proposal-13121"><?oxy_insert_start author="ekimber" timestamp="20131215T115347-0600"?> or structural<?oxy_insert_end?></ph> module (if the vocabulary module is a
+                structural module).</li>
+              </ul></p>
+            <p>The specialized elements <term outputclass="OASIS-terminology">MUST</term> follow the rules of the architecture in defining content models and attributes.</p>
+            <p>The element type patterns are organized into the following sections:<dl>
+              <dlentry>
+                <dt>Element type name patterns</dt>
+                <dd>
+                  <p>This section <term outputclass="OASIS-terminology">SHOULD</term> have the section heading "ELEMENT TYPE NAME
+                    PATTERNS"<codeblock>&lt;div>
+  &lt;a:documentation>ELEMENT TYPE NAME PATTERNS&lt;/a:documentation>
+  ...
+&lt;/div></codeblock></p>
+                  <p>For each element type declared in the vocabulary module there <term outputclass="OASIS-terminology">MUST</term> be a pattern whose name is the element type name and whose content
+                    is a reference to the element type's "<?oxy_insert_start author="ekimber" timestamp="20131215T120006-0600"?><varname>tagname</varname><?oxy_insert_end?>.element" pattern. For
+                    example:<codeblock>&lt;div>
+  &lt;a:documentation>ELEMENT TYPE NAME PATTERNS&lt;/a:documentation>
+  &lt;define name="b">
+    &lt;ref name="b.element"/>
+  &lt;/define>
+  ...
+&lt;/div></codeblock></p>
+                  <p>The element type name pattern provides a layer of abstraction that facilitates redefinition. The element type name patterns are referenced from content model and domain extension
+                    patterns. Specialization modules can redeclare the patterns to include specializations of the type, allowing the specialized types in all contexts where the base type is
+                    allowed.</p>
+                  <p>The declarations <term outputclass="OASIS-terminology">MAY</term> occur in any order. By convention, they are usually ordered alphabetically or grouped logically. </p>
+                </dd>
+              </dlentry>
+              <dlentry>
+                <dt>Common content model patterns</dt>
+                <dd>Structural and element domain modules <term outputclass="OASIS-terminology">MAY</term> include a "common content model patterns" section that defines patterns that contribute to
+                  the content models of the element types defined in the module. This section <term outputclass="OASIS-terminology">SHOULD</term> use the section header "COMMON CONTENT MODEL
+                  PATTERNS":<codeblock>&lt;div>
+  &lt;a:documentation>COMMON CONTENT MODEL PATTERNS&lt;/a:documentation>
+  ...
+&lt;/div></codeblock><p>Common content model patterns <term
+                  outputclass="OASIS-terminology">SHOULD</term> use names that end with ".cnt", e.g. "body.cnt".</p></dd>
+              </dlentry>
+              <dlentry>
+                <dt>Common attribute sets</dt>
+                <dd>Structural and element domain modules <term outputclass="OASIS-terminology">MAY</term> include a "common attribute sets" section that defines patterns for attribute sets common to
+                  one or more of the element types defined in the module. This section <term outputclass="OASIS-terminology">SHOULD</term> use the section header "COMMON ATTRIBUTE
+                  SETS":<codeblock>&lt;div>
+  &lt;a:documentation>COMMON ATTRIBUTE SETS&lt;/a:documentation>
+  ...
+&lt;/div></codeblock><p>Common attribute set patterns <term
+                  outputclass="OASIS-terminology">SHOULD</term> use names that <?oxy_insert_start author="ekimber" timestamp="20131215T120235-0600"?>end <?oxy_insert_end?>with "-atts", e.g.
+                  "topicref-atts".</p></dd>
+              </dlentry>
+              <dlentry>
+                <dt>Element type declarations</dt>
+                <dd>For each element type declared in the vocabulary module there <term outputclass="OASIS-terminology">MUST</term> be a set of patterns that define the content model and attributes
+                  for the element type. Each set of patterns <term outputclass="OASIS-terminology">SHOULD</term> be grouped within a &lt;div> element and should start with a descriptive comment of the
+                  form:<codeblock>&lt;div>
+  &lt;a:documentation>LONG NAME: <i>Long Name</i>&lt;/a:documentation>
+  ...
+&lt;/div></codeblock><p>Each element type <term outputclass="OASIS-terminology"
+                  >MUST</term> have a content model pattern named <codeph><i>tagname</i>.content</codeph>. The value of the pattern
+                  <?oxy_delete author="ekimber" timestamp="20131207T082110-0600" content="must"?><?oxy_insert_start author="ekimber" timestamp="20131207T082110-0600"?><term
+                  outputclass="OASIS-terminology">MUST</term><?oxy_insert_end?> be the complete content model definition. For
+                  example:<codeblock>  &lt;define name="topichead.content">
+    &lt;optional>
+      &lt;ref name="topicmeta"/>
+    &lt;/optional>
+    &lt;zeroOrMore>
+      &lt;choice>
+        &lt;ref name="anchor"/>
+        &lt;ref name="data.elements.incl"/>
+        &lt;ref name="navref"/>
+        &lt;ref name="topicref"/>
+      &lt;/choice>
+    &lt;/zeroOrMore>
+  &lt;/define></codeblock>The
+                  content model pattern <term outputclass="OASIS-terminology">MAY</term> be overridden in constraint modules to further constrain the content model for the element type.</p><p>Each
+                  element type <term outputclass="OASIS-terminology">MUST</term> have an attribute list pattern named <codeph><i>tagname</i>.attributes</codeph>. The pattern entity
+                  <?oxy_delete author="ekimber" timestamp="20131207T082126-0600" content="must"?><?oxy_insert_start author="ekimber" timestamp="20131207T082126-0600"?><term
+                  outputclass="OASIS-terminology">MUST</term><?oxy_insert_end?> declare all attributes used by the element type (except for the attributes provided by the <codeph>global-atts</codeph>
+                  pattern, which is always referenced as part of the attribute list declaration for an element's class attribute). For
+                  example:<codeblock>  &lt;define name="topichead.attributes">
+    &lt;optional>
+      &lt;attribute name="navtitle"/>
+    &lt;/optional>
+    &lt;optional>
+      &lt;attribute name="outputclass"/>
+    &lt;/optional>
+    &lt;optional>
+      &lt;attribute name="keys"/>
+    &lt;/optional>
+    &lt;optional>
+      &lt;attribute name="copy-to"/>
+    &lt;/optional>
+    &lt;ref name="topicref-atts"/>
+    &lt;ref name="univ-atts"/>
+  &lt;/define></codeblock></p><p>The
+                  attribute list declaration <term outputclass="OASIS-terminology">MAY</term> be overridden in constraint modules to further
+                  constrain<?oxy_delete author="ekimber" timestamp="20131215T120455-0600" content="t"?> the attribute list for the element type.</p><p>Each element type <term
+                  outputclass="OASIS-terminology">MUST</term> have a pattern named <codeph><i>tagname</i>.element</codeph> containing an &lt;element> element whose @name value is the element type name
+                  and whose content is a reference to the <codeph><i>tagname</i>.attlist</codeph> and <codeph><i>tagname</i>.content</codeph> patterns. The &lt;element> element <term
+                  outputclass="OASIS-terminology">SHOULD</term> include a &lt;a:documentation> element containing a short description of the element type. The description should not include any
+                  unescaped XML markup. For grammars intended for use in generating DTD- and XSD-syntax modules, the &lt;element> element <term outputclass="OASIS-terminology">SHOULD</term> specify
+                  the attribute "longName" in the DITA architecture name<?oxy_insert_start author="ekimber" timestamp="20131215T075959-0600"?>space<?oxy_insert_end?>
+                  ("http://dita.oasis-open.org/architecture/2005/", by convention bound to the prefix "ditaarch"). For
+                  example:<codeblock>  &lt;define name="topichead.element">
+    &lt;element name="topichead" dit<?oxy_insert_start author="ekimber" timestamp="20131215T080055-0600"?>a<?oxy_insert_end?>arch:longName="Topic Head">
+      &lt;a:documentation>The &amp;lt;topichead> element provides a title-only entry in a navigation map,
+        as an alternative to the fully-linked title provided by the &amp;lt;topicref> element. 
+        Category: Mapgroup elements&lt;/a:documentation>
+      &lt;ref name="topichead.attlist"/>
+      &lt;ref name="topichead.content"/>
+    &lt;/element>
+  &lt;/define></codeblock></p><p>Each
+                  element type <?oxy_delete author="ekimber" timestamp="20131207T082136-0600" content="must"?><?oxy_insert_start author="ekimber" timestamp="20131207T082136-0600"?><term
+                  outputclass="OASIS-terminology">MUST</term><?oxy_insert_end?> have a pattern named <codeph><i>tagname</i>.attlist</codeph> with a @combine value of "interleave" containing only a
+                  reference to the <codeph><i>tagname</i>.attributes</codeph> pattern. For
+                  example:<codeblock>  &lt;define name="topichead.attlist" combine="interleave">
+    &lt;ref name="topichead.attributes"/>
+  &lt;/define></codeblock></p><note type="other"
+                  othertype="example">
+                  <p>
+                    <codeblock>&lt;div>
+  &lt;a:documentation>LONG NAME: Topic Head&lt;/a:documentation>
+  &lt;define name="topichead.content">
+    &lt;optional>
+      &lt;ref name="topicmeta"/>
+    &lt;/optional>
+    &lt;zeroOrMore>
+      &lt;choice>
+        &lt;ref name="anchor"/>
+        &lt;ref name="data.elements.incl"/>
+        &lt;ref name="navref"/>
+        &lt;ref name="topicref"/>
+      &lt;/choice>
+    &lt;/zeroOrMore>
+  &lt;/define>
+  &lt;define name="topichead.attributes">
+    &lt;optional>
+      &lt;attribute name="navtitle"/>
+    &lt;/optional>
+    &lt;optional>
+      &lt;attribute name="outputclass"/>
+    &lt;/optional>
+    &lt;optional>
+      &lt;attribute name="keys"/>
+    &lt;/optional>
+    &lt;optional>
+      &lt;attribute name="copy-to"/>
+    &lt;/optional>
+    &lt;ref name="topicref-atts"/>
+    &lt;ref name="univ-atts"/>
+  &lt;/define>
+  &lt;define name="topichead.element">
+    &lt;element name="topichead"<?oxy_insert_start author="ekimber" timestamp="20131215T080113-0600"?> ditaarch:longName="Topic head"<?oxy_insert_end?>>
+      &lt;a:documentation>The &amp;lt;topichead> element provides a title-only entry in a navigation map,
+        as an alternative to the fully-linked title provided by the &amp;lt;topicref> element. 
+        Category: Mapgroup elements&lt;/a:documentation>
+      &lt;ref name="topichead.attlist"/>
+      &lt;ref name="topichead.content"/>
+    &lt;/element>
+  &lt;/define>
+  &lt;define name="topichead.attlist" combine="interleave">
+    &lt;ref name="topichead.attributes"/>
+  &lt;/define>
+&lt;/div></codeblock>
+                  </p>
+                  </note></dd>
+              </dlentry>
+              <?oxy_insert_start author="ekimber" timestamp="20131215T100813-0600"?>
+              <dlentry>
+                <dt>idElements pattern contribution</dt>
+                <dd>
+                  <p>Element types that declare the @id attribute as type "ID", including all topic and map element types, <term outputclass="OASIS-terminology">MUST</term> be included in the
+                    idElements pattern in order to correctly configure the "any" pattern overrides defined in document type shells. Each such element type <term outputclass="OASIS-terminology"
+                    >MUST</term> have a pattern declaration named "idElements" with a @combine value of "choice" and a reference to the element type's "<varname>tagname</varname>.element" pattern. The
+                    pattern declaration <term outputclass="OASIS-terminology">SHOULD</term> follow the "<varname>tagname</varname>.attlist"
+                    pattern:<codeblock>      ...
+      &lt;define name="map.attlist" combine="interleave">
+        &lt;ref name="map.attributes"/>
+        &lt;ref name="arch-atts"/>
+        &lt;ref name="domains-att"/>
+      &lt;/define>
+      &lt;define name="idElements" combine="choice">
+        &lt;ref name="map.element"/>
+      &lt;/define>
+    &lt;/div></codeblock></p>
+                </dd>
+              </dlentry>
+              <?oxy_insert_end?>
+              <dlentry>
+                <dt>Specialization attribute declarations</dt>
+                <dd>
+                  <p>A vocabulary module <term outputclass="OASIS-terminology">MUST</term> define a @class attribute for every specialized element declared in the module.</p>
+                  <p>This section declares the @class attributes for the element types defined in the module. This section <term outputclass="OASIS-terminology">SHOULD</term> use the section header
+                    "SPECIALIZATION ATTRIBUTE DECLARATIONS":</p>
+                  <codeblock>&lt;div>
+  &lt;a:documentation>SPECIALIZATION ATTRIBUTE DECLARATIONS&lt;/a:documentation>
+  ...
+&lt;/div></codeblock>
+                  <p>For each element type defined in the module there <term outputclass="OASIS-terminology">MUST</term> be a pattern named <codeph><i>tagname</i>.attlist</codeph> that contains a
+                    reference to the attribute list pattern "global-atts" and defines an optional attribute named "class". The @class attribute default value <term outputclass="OASIS-terminology"
+                    >MUST</term> include the value of the @class attribute of the base element, and append to it the element name qualified by the topic element name with at least one leading and
+                    trailing space. The @class attribute for an element introduced by a structural specialization <term outputclass="OASIS-terminology">MUST</term> start with a minus sign ("-"). The
+                    @class attribute for a domain specialization <term outputclass="OASIS-terminology">MUST</term> start with a plus sign ("+"). The initial minus or plus sign <term
+                    outputclass="OASIS-terminology">MUST</term> be followed by one or more spaces. The attribute value <term outputclass="OASIS-terminology">MUST</term> end with one or more trailing
+                    spaces. </p>
+                  <p>The attribute default value is declared using the @defaultValue attribute from the RELAX NG DTD compatibility namespace "http://relaxng.org/ns/compatibility/annotations/1.0" (by
+                    convention bound to the prefix "a").</p>
+                  <p>For
+                    example:<codeblock>  &lt;define name="anchorref.attlist" combine="interleave">
+    &lt;ref name="global-atts"/>
+    &lt;optional>
+      &lt;attribute name="class" 
+        a:defaultValue="+ map/topicref mapgroup-d/anchorref "
+      />
+    &lt;/optional>
+  &lt;/define></codeblock></p>
+                  <p>The @class attribute declarations for a module <term outputclass="OASIS-terminology">MUST</term> be grouped together at the end of the module after any other declarations. The
+                    declarations may occur in any order. By convention they are often ordered alphabetically or grouped logically.</p>
+                  <p>See <xref href="classatt.dita#classatt" format="dita"/> for complete details on the @class attribute.</p>
+                </dd>
+              </dlentry>
+              </dl></p>
+          </section>
+        </conbody>
+      </concept>
+      <concept
+        id="concept_tcz_3zr_2m">
+        <title>Structural module coding requirements</title>
+        <shortdesc>A structural vocabulary module defines a new topic or map type as a specialization of a base topic or map type. The purpose is usually to enhance the user's interaction by adapting
+          the topic or map type to its particular purposes.</shortdesc>
+        <conbody>
+          <p>A structural type module <term outputclass="OASIS-terminology">MUST</term> conform to the following coding requirements in addition to the general module coding requirements and the rules
+            defined in <xref href="#concept_j2w_cgk_fm" format="dita"/>.</p>
+          <section>
+            <title>Architecture attributes</title>
+            <p>The topic or map element type <term outputclass="OASIS-terminology">MUST</term> declare the @DITAArchVersion attribute and set its value to "1.3". This attribute gives processors a
+              reliable way to check the architecture version. In addition, because the @DITAArchVersion attribute is in a DITA-defined namespace, it serves as an unambiguous signal that the element is
+              a DITA element. </p>
+            <p>The architectural attributes section <term outputclass="OASIS-terminology">SHOULD</term> use the section header "ARCHITECTURE
+              ATTRIBUTES":<codeblock>&lt;div>
+  &lt;a:documentation>ARCHITECTURE ATTRIBUTES&lt;/a:documentation>
+  ...
+&lt;/div></codeblock></p>
+            <p>The architectural attributes pattern <term outputclass="OASIS-terminology">MUST</term> have the name "arch-atts" and <term outputclass="OASIS-terminology">MUST</term> declare the
+              @DITAArchVersion attribute in the DITA architecture namespace (by convention bound to the prefix
+              "ditaarch"):<codeblock>  &lt;define name="arch-atts">
+    &lt;optional>
+      &lt;attribute name="ditaarch:DITAArchVersion" a:defaultValue="1.3"/>
+    &lt;/optional>
+  &lt;/define></codeblock></p>
+          </section>
+        </conbody>
+      </concept>
+      <concept
+        id="concept_dsc_kzr_2m">
+        <title>Topic type module coding requirements</title>
+        <shortdesc>Topic type vocabulary modules <term outputclass="OASIS-terminology">MUST</term> conform to additional coding requirements for defining default topic nesting.</shortdesc>
+        <conbody>
+          <section id="section_5E63C9E47F0D41EE83D5EB24F1617684">
+            <title>Default nested topics pattern</title>
+            <p>A topic type module <term outputclass="OASIS-terminology">MUST</term> define a pattern to specify default subordinate topics. The pattern name <term outputclass="OASIS-terminology"
+              >MUST</term> be the topic element name plus the suffix <codeph>-info-types</codeph>. For example, the info-types pattern for the concept topic type is
+              <codeph>concept-info-types</codeph>. The info type pattern section should use the section header "INFO TYPES
+              PATTERNS":<codeblock>&lt;div>
+  &lt;a:documentation>INFO TYPES PATTERNS&lt;/a:documentation>
+  ...
+&lt;/div></codeblock></p>
+            <p>If the topic has default subordinate topics, this pattern <term outputclass="OASIS-terminology">MAY</term> refer to a list of topic element type name
+              patterns<?oxy_insert_start author="ekimber" timestamp="20131215T121018-0600"?>, as in this
+              example:<?oxy_insert_end?><?oxy_delete author="ekimber" timestamp="20131215T121018-0600" content="."?>
+              <?oxy_insert_start author="ekimber" timestamp="20131215T121029-0600"?><codeblock>&lt;div>
+  &lt;a:documentation>INFO TYPES PATTERNS&lt;/a:documentation>
+  &lt;define name="mytopic-info-types">
+    &lt;ref name="subtopictype-01"/>
+    &lt;ref name="subtopictype-02"/>
+  &lt;/define>
+  ...
+&lt;/div></codeblock><?oxy_insert_end?><?oxy_insert_start author="ekimber" timestamp="20131215T121025-0600" type="split"?></p>
+            <p><?oxy_insert_end?>If <?oxy_delete author="ekimber" timestamp="20131215T121109-0600" content="not"?><?oxy_insert_start author="ekimber" timestamp="20131215T121109-0600"?>the topic does
+              not have default subordinate topics<?oxy_insert_end?>, the pattern <term outputclass="OASIS-terminology">SHOULD</term> refer to the <codeph>info-types</codeph> pattern as in the
+              following example:</p>
+            <codeblock>&lt;div>
+  &lt;a:documentation>INFO TYPES PATTERNS&lt;/a:documentation>
+  &lt;define name="concept-info-types">
+    &lt;ref name="info-types"/>
+  &lt;/define>
+  ...
+&lt;/div></codeblock>
+            <p>A document type shell can then control how topics are allowed to nest by redefining the <codeph><varname>topictype</varname>-info-types</codeph> pattern for each topic type, or it can
+              efficiently create common nesting rules by redefining the main info-types pattern.</p>
+            <p>In the declaration of the root element of a topic type, the last position in the content model <term outputclass="OASIS-terminology">MUST</term> be the
+              <codeph><varname>topictype</varname>-info-types</codeph> nested topics pattern, as in the following example:</p>
+            <codeblock>&lt;div>
+  &lt;a:documentation>LONG NAME: Concept&lt;/a:documentation>
+  &lt;define name="concept.content">
+    &lt;ref name="title"/>
+    &lt;optional>
+      &lt;ref name="titlealts"/>
+    &lt;/optional>
+    &lt;optional>
+      &lt;choice>
+        &lt;ref name="abstract"/>
+        &lt;ref name="shortdesc"/>
+      &lt;/choice>
+    &lt;/optional>
+    &lt;optional>
+      &lt;ref name="prolog"/>
+    &lt;/optional>
+    &lt;optional>
+      &lt;ref name="conbody"/>
+    &lt;/optional>
+    &lt;optional>
+      &lt;ref name="related-links"/>
+    &lt;/optional>
+    &lt;zeroOrMore>
+      &lt;ref name="concept-info-types"/>
+    &lt;/zeroOrMore>
+  &lt;/define>
+  ...
+&lt;/div></codeblock>
+          </section>
+        </conbody>
+      </concept>
+      <concept
+        id="concept_jck_lzr_2m">
+        <title>Element domain module coding requirements</title>
+        <shortdesc>An element domain vocabulary module defines element types that are appropriate for the subject-matter or application domain for which they are designed. The purpose is usually to
+          enhance the user's interaction by providing <q>semantic</q> elements whose names more accurately denote their content, making that content easier to search and retrieve.</shortdesc>
+        <conbody>
+          <section>
+            <title>Domain extension patterns</title>
+            <p>The domain extension patterns serve to integrate domain modules into the base content models of the element types the module extends when the module is included in a document type
+              shell. This section <term outputclass="OASIS-terminology">SHOULD</term> use the section header "DOMAIN EXTENSION
+              PATTERNS":<codeblock>&lt;div>
+  &lt;a:documentation>DOMAIN EXTENSION PATTERNS&lt;/a:documentation>
+  ...
+&lt;/div></codeblock></p>
+            <p>For each element type that is extended by the element domain module, the module <term outputclass="OASIS-terminology">MUST</term> define a domain extension pattern. The pattern consists
+              of a choice group of references to the element type name patterns for the domain-provided extensions of the extended element type.The name of the pattern <term
+              outputclass="OASIS-terminology">MUST</term> be constructed from the short name for the domain, "-d-", and the element type being extended. For example, this pattern extends the &lt;ph>
+              element type to add the highlight-domain-defined specializations of
+              &lt;ph>:<codeblock>  &lt;define name="hi-d-ph">
+    &lt;choice>
+      &lt;ref name="b"/>
+      &lt;ref name="i"/>
+      &lt;ref name="sup"/>
+      &lt;ref name="sub"/>
+      &lt;ref name="tt"/>
+      &lt;ref name="u"/>
+    &lt;/choice>
+  &lt;/define>
+</codeblock></p>
+            <p>For each element type that is extended by the element domain module, the module <term outputclass="OASIS-terminology">MUST</term> extend the element type's pattern with a @combine value
+              of "choice" containing a reference to the domain extension pattern. For example, this pattern adds the highlight domain specializations of &lt;ph> to the &lt;ph> content
+              model:<codeblock>  &lt;define name="ph" combine="choice">
+    &lt;ref name="hi-d-ph"/>
+  &lt;/define></codeblock></p>
+            <p>Because the extension of the element type's pattern uses a @combine value of "choice", the effect is that the domain-provided elements are automatically added to the effective content
+              model of the extended element in any grammar that includes the domain module.</p>
+          </section>
+          <?oxy_insert_start author="ekimber" timestamp="20131207T085649-0600"?>
+          <section>
+            <title>Inclusion of foreign vocabularies</title>
+            <p>In order to enable generation of DTD- and XSD-syntax versions of the RELAX NG vocabulary, domain modules that include foreign vocabularies using the &lt;externalRef> element <term
+              outputclass="OASIS-terminology">SHOULD</term> specify the attributes @ditaarch:dtdSystemId optionally, ditaarch:dtdPublicId, and @ditaarch:xsdURI and, if the schema is in a namespace,
+              the ditaarch:xsdTargetNamespace attribute. The @ditaarch:dtdSystemId attribute specifies the system ID URI to use for the DTD-syntax version of the foreign vocabulary as it should be
+              specified on the external parameter entity reference to the foreign vocabulary module in the generated DTD-syntax module. The @ditaarch:dtdPublicId attribute specifies the public ID or
+              URN to use for the DTD-syntax version of the foreign vocabulary as it should be specified on the external parameter entity reference to the foreign vocabulary module in the generated
+              DTD-syntax module. The @ditaarch:xsdURI attribute specifies the URI reference as it should be specified on the XSD &lt;import> or &lt;include> element's @schemalLocation attribute in the
+              generated XSD-syntax module. The @ditaarch:xsdTargetNamespace attribute specifies the namespace the XSD schema targets.</p>
+            <p>For
+              example:<codeblock>...
+    &lt;div>&lt;a:documentation>LONG NAME: RNG Grammar Container&lt;/a:documentation>
+      &lt;define name="rng_grammar.content">
+        &lt;zeroOrMore>
+          &lt;choice>
+            &lt;externalRef href="rngGrammarProxy.rng"
+              ditaarch:dtdPublicId="-//OASIS//DTD DITA RNG Grammar//EN"
+              ditaarch:dtdSystemId="rngGrammar.dtd"
+              ditaarch:xsdURI="rngGrammar.xsd"
+              ditaarch:xsdTargetNamespace="http://relaxng.org/ns/structure/1.0"
+            />
+            &lt;ref name="data"/>
+            &lt;ref name="data-about"/>
+          &lt;/choice>
+        &lt;/zeroOrMore>
+      &lt;/define>
+...</codeblock></p>
+          </section>
+          <?oxy_insert_end?>
+        </conbody>
+      </concept>
+      <concept
+        id="concept_y21_mzr_2m">
+        <title>Attribute domain module coding requirements</title>
+        <shortdesc>An attribute domain vocabulary module declares a new attribute specialized from either the @props or @base attribute. An attribute domain module defines exactly one new attribute
+          type.</shortdesc>
+        <conbody>
+          <p>An attribute domain's name is the name of the attribute plus "Att" to distinguish the attribute domain from any element domains with the same name. For example, for an attribute named
+            "new" the attribute domain name would be "newAtt". The attribute domain name is used to construct filenames and pattern names for the domain. </p>
+          <p>An attribute domain <term outputclass="OASIS-terminology">MUST</term> consist of one file, whose name consists of the module name plus <filepath>DomainMod</filepath> plus the <filepath>rng</filepath> or
+            <filepath>rnc</filepath> extension. For example: <filepath>newAttDomainMod.rng</filepath> for an attribute named "new". </p>
+          <p>The file <term outputclass="OASIS-terminology">MUST</term> have three sections:<dl>
+            <dlentry>
+              <dt>Domains attribute contribution</dt>
+              <dd>
+                <p>The @domains contribution for attribute domains uses the pattern "a(<i>baseAttributeName</i> <i>specializedAttributeNames</i>)" where <i>baseAttributeName</i> is either "base" or
+                  "props" and <i>specializedAttributeNames</i> is a space-separated list of attribute names reflecting the specialization hierarchy of the specialized attribute and ending with the
+                  name of the specialized attribute defined in the module.</p>
+                <note
+                  type="other"
+                  othertype="example">
+                  <p>An attribute specialized directly from @props:</p>
+                  <codeblock>&lt;moduleDesc>
+  ...
+  &lt;moduleMetadata>
+    ...   
+    &lt;domainsContribution>a(props deliveryTarget)&lt;/domainsContribution>
+  &lt;/moduleMetadata>
+&lt;/moduleDesc></codeblock>
+                  <p>An attribute "myDeliveryTarget" specialized from
+                    @deliveryTarget:<codeblock>&lt;moduleDesc>
+  ...
+  &lt;moduleMetadata>
+    ...   
+    &lt;domainsContribution>a(props deliveryTarget myDeliveryTarget)&lt;/domainsContribution>
+  &lt;/moduleMetadata>
+&lt;/moduleDesc></codeblock></p>
+                </note>
+              </dd>
+            </dlentry>
+            <dlentry>
+              <dt>Attribute extension pattern</dt>
+              <dd>The attribute extension pattern extends either the @props or @base attribute set pattern to include the attribute specialization. </dd>
+              <dd>For specializations of @props the pattern <term
+                outputclass="OASIS-terminology">MUST</term> be named "props-attribute-extensions" and <term
+                outputclass="OASIS-terminology">MUST</term> specify a @combine value of "interleave". The content of the pattern <term
+                outputclass="OASIS-terminology">MUST</term> be a reference to the specialized attribute declaration pattern. For
+                example:<codeblock>  &lt;define name="props-attribute-extensions" combine="interleave">
+    &lt;ref name="deliveryTargetAtt-d-attribute"/>
+  &lt;/define></codeblock><p>For
+                specializations of @base the pattern <term
+                outputclass="OASIS-terminology">MUST</term> be named "base-attribute-extensions" and <term
+                outputclass="OASIS-terminology">MUST</term> specify a @combine value of "interleave" The content of the pattern <term
+                outputclass="OASIS-terminology">MUST</term> be a reference to the specialized attribute declaration pattern. For
+                example:</p><codeblock>  &lt;define name="base-attribute-extensions" combine="interleave">
+    &lt;ref name="myBaseSpecializationAtt-d-attribute"/>
+  &lt;/define></codeblock></dd>
+            </dlentry>
+            <dlentry>
+              <dt>Attribute declaration pattern</dt>
+              <dd>The specialized attribute <term outputclass="OASIS-terminology">MUST</term> be declared in a pattern named <codeph><i>domainShortName</i>-d-attribute</codeph>. The attribute
+                <?oxy_delete author="ekimber" timestamp="20131207T082148-0600" content="must"?><?oxy_insert_start author="ekimber" timestamp="20131207T082148-0600"?><term
+                outputclass="OASIS-terminology">MUST</term><?oxy_insert_end?> be defined as optional. For
+                example:<codeblock>  &lt;define name="deliveryTargetAtt-d-attribute">
+    &lt;optional>
+      &lt;attribute name="deliveryTarget"/>
+    &lt;/optional>    
+  &lt;/define></codeblock></dd>
+            </dlentry>
+            </dl></p>
+        </conbody>
+      </concept>
+    </concept>
+    <concept
+      id="concept_ebs_mn4_2m">
+      <title>Constraint module RELAX NG coding requirements</title>
+      <shortdesc>A structural constraint module defines the constraints for exactly one map or topic element type. A domain constraint module defines the constraints for exactly one element or
+        attribute domain.</shortdesc>
+      <conbody>
+        <section>
+          <title>Requirements for structural constraint modules</title>
+          <p>Constraint modules <term outputclass="OASIS-terminology">SHOULD</term> be named
+            "<varname>qualifier</varname><varname>tagname</varname>Constraints<?oxy_insert_start author="ekimber" timestamp="20140111T091138-0600"?>Mod<?oxy_insert_end?><?oxy_delete author="ekimber" timestamp="20140111T091140-0600" content=".mod"?>"<?oxy_insert_start author="ekimber" timestamp="20140111T091222-0600"?>
+            with an extension of ".rng" or ".rnc"<?oxy_insert_end?>, where <varname>qualifier</varname> is specific to the constraints module and characterizes it, e.g. "strict", "requiredTitle", etc.
+            and <varname>tagname</varname> is the name of the element type to which the constraints apply, e.g. "topic", "p", "myNewTopicType", etc.</p>
+          <p>The constraint module's @domains contribution pattern <term outputclass="OASIS-terminology">MUST</term> be of the form "(<varname>tagname</varname>
+            <varname>qualifier</varname><varname>Tagname</varname>-c)", where <varname>tagname</varname> is the name of the element type to which the constraints apply, preceded by any ancestor types
+            of <varname>tagname</varname>, <varname>qualifier</varname> is as for the module filename (e.g., "strict"), and <varname>Tagname</varname> is the element type name with an initial capital
+            (e.g. "Topic"). The literal "-c" indicates that the name is the name of a constraints domain. For example:</p>
+          <codeblock>&lt;moduleDesc>
+  ...
+  &lt;moduleMetadata>
+    ...   
+    &lt;domainsContribution>(topic task strictTaskbody-c)&lt;/domainsContribution>
+  &lt;/moduleMetadata>
+&lt;/moduleDesc></codeblock>
+        </section>
+        <section>
+          <title>Requirements for domain constraint modules</title>
+          <p>A domain constraint module defines the constraints for exactly one element or attribute domain module.</p>
+          <p>Domain constraint modules <term outputclass="OASIS-terminology">SHOULD</term> be named "<varname>qualifier</varname><varname>domain</varname>DomainConstraintsMod" with an extension of
+            ".rng" or ".rnc", where <varname>qualifier</varname> is specific to the constraints module and characterizes it, e.g. "strict", "requiredTitle", etc. and <varname>domain</varname> is the
+            name of the domain to which the constraints apply, e.g. "hi-d", "pr-d", "mydomain-d", "deliveryTargetAtt-d", etc.</p>
+          <p>The constraint module's @domains contribution pattern <term outputclass="OASIS-terminology">MUST</term> be of the form "(<varname>domain</varname>
+            <varname>qualifier</varname><varname>Domain</varname>-c)", where <varname>domain</varname> is the name of the domain to which the constraints apply, preceded by the topic or map type
+            specialization hierarchy to which the domain applies (e.g., "topic task), <varname>qualifier</varname> is as for the module filename (e.g., "strict"), and <varname>Domain</varname> is the
+            domain name with an initial capital (e.g. "Taskreq"). The literal "-c" indicates that the name is the name of a constraints domain. For example:</p>
+          <codeblock>&lt;moduleDesc>
+  ...
+  &lt;moduleMetadata>
+    ...   
+    &lt;domainsContribution>(topic task taskreq- requiredReqcondsTaskreq-c)&lt;/domainsContribution>
+  &lt;/moduleMetadata>
+&lt;/moduleDesc></codeblock>
+        </section>
+        <section>
+          <title>Requirements for shell document types</title>
+          <p>Constraint modules are integrated into document type shells by simply including the module into the shell document type. See <xref
+            href="#concept_ecb_wg2_2m"
+            format="dita"/>. The @domains contribution of the constraint module <term
+            outputclass="OASIS-terminology">MUST</term> be reflected in the @domains value for the root map or topic type configured by the document type shell.</p>
+          <?Pub Caret -1?>
+        </section>
+      </conbody>
+    </concept>
+    <concept id="concept_aqh_5zt_3h">
+      <title>Specializing foreign or unknown content</title>
+      <conbody>
+        <draft-comment author="ekimber">[Insert<?oxy_insert_start author="ekimber" timestamp="20131215T081658-0600"?> this<?oxy_insert_end?> new example before XSD sample.]</draft-comment>
+        <example>
+          <title>Example of specializing foreign content using RELAX NG</title>
+          <p>The sample below describes how to create a domain declaration for the RELAX NG grammar element and integrate it into a document type shell. </p>
+          <p>Domain modules that include foreign grammars should use the &lt;externalRef> element to refer to the foreign grammar when the grammar specifies a &lt;start> element. When using the
+            &lt;externalRef> element, it is possible to safely include foreign vocabularies that are not in a namespace because the externally-referenced grammar's patterns are not merged with those
+            of the referencing grammar.</p>
+          <p>The following specialization domain specializes &lt;foreign> in order to contain RELAX NG &lt;grammar> elements, for example, to document document types by rendering the grammar markup as
+            diagrams. </p>
+          <?oxy_delete author="ekimber" timestamp="20131207T074925-0600" content=" "?>
+          <codeblock>&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;?xml-model href="urn:oasis:names:tc:dita:rng:vocabularyModuleDesc.rng"
+                         schematypens="http://relaxng.org/ns/structure/1.0"?>
+&lt;grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" 
+  xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/"
+  xmlns="http://relaxng.org/ns/structure/1.0">
+&lt;moduleDesc xmlns="http://dita.oasis-open.org/architecture/2005/">
+   &lt;moduleTitle>RelaxNG Foreign Domain&lt;/moduleTitle>
+   &lt;headerComment>
+============================================================= 
+Define the Relax NG XML syntax as a DITA foreign vocabulary
+=============================================================      
+&lt;/headerComment>
+   &lt;moduleMetadata>
+     &lt;moduleType>elementdomain&lt;/moduleType>
+     &lt;moduleShortName>rnggrammar-d&lt;/moduleShortName>
+     &lt;modulePublicIds>
+       &lt;dtdMod>urn:oasis.org:elements:dita:dtd:rnggrammarDomain.mod&lt;/dtdMod>
+       &lt;dtdEnt>urn:oasis.org:entities:dita:dtd:rnggrammarDomain.ent&lt;/dtdEnt>
+       &lt;xsdMod>urn:oasis.org:names:dita:xsd:rnggrammarDomain.xsd&lt;/xsdMod>
+       &lt;rncMod>urn:oasis.org:names:dita:rnc:rnggrammarDomain.rnc&lt;/rncMod>
+       &lt;rngMod>urn:oasis.org:names:dita:rng:rnggrammarDomain.rng&lt;/rngMod>
+     &lt;/modulePublicIds>
+     &lt;domainsContribution>(topic rnggrammar-d)&lt;/domainsContribution>
+   &lt;/moduleMetadata>
+ &lt;/moduleDesc>  
+  
+ &lt;div>
+   &lt;a:documentation>DOMAIN EXTENSION PATTERNS&lt;/a:documentation>
+ 
+  &lt;define name="rnggrammar-d-foreign">
+    &lt;choice>
+      &lt;ref name="rng_grammar"/>
+    &lt;/choice>
+  &lt;/define>
+  
+  &lt;define name="foreign" combine="choice">
+    &lt;ref name="rnggrammar-d-foreign"/>
+  &lt;/define>
+ &lt;/div>
+ &lt;div>
+   &lt;a:documentation>ELEMENT TYPE NAME PATTERNS&lt;/a:documentation>
+  &lt;define name="rng_grammar">
+    &lt;ref name="rng_grammar.element"/>
+  &lt;/define>
+ &lt;/div>
+ &lt;div>
+   &lt;a:documentation>ELEMENT TYPE DECLARATIONS&lt;/a:documentation>  
+    &lt;div>&lt;a:documentation>LONG NAME: RNG Grammar Container&lt;/a:documentation>
+      &lt;define name="rng_grammar.content">
+        &lt;zeroOrMore>
+          &lt;choice>
+            &lt;externalRef href="rngGrammarProxy.rng"<?oxy_insert_start author="ekimber" timestamp="20131215T081757-0600"?>
+              ditaarch:dtdPublicId="-//OASIS//DTD DITA RNG Grammar//EN"
+              ditaarch:dtdSystemId="rngGrammar.dtd"
+              ditaarch:xsdURI="rngGrammar.xsd"
+                 
+            <?oxy_insert_end?>/>
+            &lt;ref name="data"/>
+            &lt;ref name="data-about"/>
+          &lt;/choice>
+        &lt;/zeroOrMore>
+      &lt;/define>
+      &lt;define
+        name="rng_grammar.attributes">
+        &lt;ref name="univ-atts"/>
+        &lt;optional>
+          &lt;attribute name="outputclass"/>
+        &lt;/optional>
+      &lt;/define>
+      &lt;define name="rng_grammar.element">
+        &lt;element name="rng_grammar" ditaarch:longName="<?oxy_delete author="ekimber" timestamp="20131215T081727-0600" content="Bold"?><?oxy_insert_start author="ekimber" timestamp="20131215T081727-0600"?>RNG grammar<?oxy_insert_end?>">
+<?oxy_delete author="ekimber" timestamp="20131215T081723-0600" content="          &amp;lt;a:documentation&gt;&amp;lt;/a:documentation&gt;
+"?>          &lt;ref name="rng_grammar.attlist"/>
+          &lt;ref name="rng_grammar.content"/>
+        &lt;/element>
+      &lt;/define>
+      &lt;define name="rng_grammar.attlist"
+        combine="interleave">
+        &lt;ref name="rng_grammar.attributes"/>
+      &lt;/define>
+    &lt;/div>  
+ &lt;/div>
+ &lt;div>
+   &lt;a:documentation>SPECIALIZATION ATTRIBUTE DECLARATIONS&lt;/a:documentation>
+  &lt;define name="rng_grammar.attlist" combine="interleave">
+    &lt;ref name="global-atts"/>
+    &lt;optional>
+      &lt;attribute name="class" a:defaultValue="+ topic/foreign rnggrammar-d/rng_grammar "/>
+    &lt;/optional>
+  &lt;/define>
+ &lt;/div>
+&lt;/grammar> </codeblock>
+          <p>Because the RELAX NG grammar  defines patterns that match any element with any content (patterns named "other" and "any" in the RELAX NG grammar), the domain requires overriding these
+            patterns to exclude the element names that define an attribute with an ID type in order to satisfy @id attribute declaration consistency requirements imposed by the RELAX NG DTD
+            compatibility facility, elements
+            <?oxy_delete author="ekimber" timestamp="20131217T084847-0600" content="which"?><?oxy_insert_start author="ekimber" timestamp="20131217T084847-0600"?>that<?oxy_insert_end?> are referred
+            explicitely in these patterns with the reference to the "idElements" pattern. This is done through an intermediate file, <filepath>rngGrammarProxy.rng</filepath>, which then references the
+            main RELAX NG grammar document, overriding the two patterns:<?oxy_insert_start author="ekimber" timestamp="20131207T075114-0600"?></p>
+          <?oxy_insert_end?>
+          <codeblock>&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;grammar datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+  ns="http://relaxng.org/ns/structure/1.0"
+  xmlns="http://relaxng.org/ns/structure/1.0">
+  &lt;include href="rngGrammar.rng">
+    &lt;define name="other">
+      &lt;zeroOrMore>
+        &lt;choice>
+          <?oxy_delete author="ekimber" timestamp="20131215T095724-0600" content="&amp;lt;ref name=&quot;topic.element&quot;/&gt;"?><?oxy_insert_start author="ekimber" timestamp="20131215T095724-0600"?>&lt;parentRef name="idElements"/><?oxy_insert_end?>
+          &lt;element>
+            &lt;anyName>
+              &lt;except>
+                &lt;name ns="">topic&lt;/name>
+                &lt;nsName/>
+              &lt;/except>
+            &lt;/anyName>
+            &lt;zeroOrMore>
+              &lt;choice>
+                &lt;attribute>
+                  &lt;anyName/>
+                &lt;/attribute>
+                &lt;text/>
+                &lt;ref name="any"/>
+              &lt;/choice>
+            &lt;/zeroOrMore>
+          &lt;/element>  
+        &lt;/choice>
+      &lt;/zeroOrMore>
+    &lt;/define>
+    
+    &lt;define name="any">
+      &lt;choice>
+        <?oxy_delete author="ekimber" timestamp="20131215T095734-0600" content="&amp;lt;ref name=&quot;topic.element&quot;&gt;&amp;lt;/ref&gt;"?><?oxy_insert_start author="ekimber" timestamp="20131215T095734-0600"?>&lt;parentRef name="idElements"/><?oxy_insert_end?>      
+        &lt;element>
+          &lt;anyName>
+            &lt;except>
+              &lt;name ns="">topic&lt;/name>
+            &lt;/except>
+          &lt;/anyName>
+          &lt;zeroOrMore>
+            &lt;choice>
+              &lt;attribute>
+                &lt;anyName/>
+              &lt;/attribute>
+              &lt;text/>
+              &lt;ref name="any"/>
+            &lt;/choice>
+          &lt;/zeroOrMore>
+        &lt;/element>
+      &lt;/choice>
+    &lt;/define>
+  &lt;/include>
+  
+<?oxy_delete author="ekimber" timestamp="20131215T095832-0600" content="  &amp;lt;define name=&quot;topic.element&quot;&gt;
+    &amp;lt;element name=&quot;topic&quot; ns=&quot;&quot;&gt;
+      &amp;lt;ref name=&quot;any&quot;/&gt;
+      &amp;lt;choice&gt;
+        &amp;lt;attribute name=&quot;id&quot; ns=&quot;&quot;&gt;
+          &amp;lt;data type=&quot;ID&quot;/&gt;
+        &amp;lt;/attribute&gt;
+        &amp;lt;zeroOrMore&gt;
+          &amp;lt;attribute&gt;
+            &amp;lt;anyName&gt;
+              &amp;lt;except&gt;
+                &amp;lt;name ns=&quot;&quot;&gt;id&amp;lt;/name&gt;
+              &amp;lt;/except&gt;
+            &amp;lt;/anyName&gt;
+          &amp;lt;/attribute&gt;
+        &amp;lt;/zeroOrMore&gt;
+      &amp;lt;/choice&gt;
+    &amp;lt;/element&gt;
+  &amp;lt;/define&gt;
+"?>&lt;/grammar></codeblock>
+        </example>
+      </conbody>
+    </concept>
+  </topic>
+</dita>
+
+
+<?oxy_options track_changes="on"?>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN"
+ "reference.dtd">
+<?Pub Sty _display FontColor="red"?>
+<reference id="noFileRenaming" xml:lang="en-us" rev="13059a">
+  <title>dvr-keyscopeSuffix</title>
+  <shortdesc>The &lt;<keyword>dvr-keyscopeSuffix</keyword>> element specifies the suffix to use when constructing the effective key scope name for the map branch implied by the ancestor
+    &lt;<keyword>ditavalref</keyword>> element.</shortdesc>
+  <prolog>
+    <metadata>
+      <keywords>
+        <indexterm>dvr-keyscopeSuffix</indexterm>
+      </keywords>
+    </metadata>
+  </prolog>
+  <refbody>
+    <section>
+      <p>For map branches implied by &lt;ditavalref> elements, the value of the &lt;dvr-keyscopeSuffix> element contributes to the effective key scope name of the branch such that the effective key
+        scope name ends with the value of the &lt;dvr-keyscopeSuffix> element. Note that if the branch as authored does not specify a @keyscope value, specifying &lt;dvr-keyscopeSuffix> results in the
+        branch establishing a key scope where the key scope name consists of at least the value of the &lt;dvr-keyscopeSuffix> element (it will also reflect the value of a &lt;dvr-keyscopePrefix>
+        element if one is specified).</p>
+    </section>
+    <section id="contains" otherprops="contains">
+      <title>Contains</title>
+      <p>text content or &lt;text></p>
+    </section>
+    <section id="containedby" otherprops="containedby">
+      <title>Contained By</title>
+      <p>ditavalmeta</p>
+    </section>
+    <section id="inheritance" otherprops="inheritance">
+      <title>Inheritance</title>
+      <p>+ topic/data ditavalref-d/dvr-keyscopeSuffix </p>
+    </section>
+    <example id="example"> <title>Example</title><p>If the the &lt;dvr-keyscopeSuffix> is specified
+      as:<codeblock>&lt;topicref keys="branch-01"
+    href="branch-01.dita" 
+    keyscope="branch-01"
+  >
+  &lt;ditavalref href="condition-01.ditaval">
+    &lt;ditavalmeta>
+      &lt;dvr-keyscopeSuffix>-cond01&lt;/dvr-keyscopeSuffix>
+    &lt;/ditavalmeta>
+  &lt;/ditavalref>
+  &lt;topicref href="topics/subtopic-01.dita"/>
+&lt;/topicref></codeblock></p>then
+      the effective key scope name for the branch "branch-01" is "branch-01-cond01".</example>
+    <section id="attributes">
+      <title>Attributes</title>
+      <simpletable id="attribute_table" relcolwidth="2* 3* 1* 1* 1*">
+        <sthead>
+          <stentry>Name</stentry>
+          <stentry>Description</stentry>
+          <stentry>Data Type</stentry>
+          <stentry>Default Value</stentry>
+          <stentry>Required?</stentry>
+        </sthead>
+        <strow conref="../../common/commonLRdefs.dita#commonLRdefs/audience">
+          <stentry>name</stentry>
+          <stentry>The name of the metadata item</stentry>
+          <stentry>string</stentry>
+          <stentry>dvr-keyscopeSuffix</stentry>
+          <stentry/>
+        </strow>
+      </simpletable>
+    </section>
+  </refbody>
+</reference>

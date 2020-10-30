@@ -1,0 +1,1 @@
+Plugin for PDF support for SVG domain.

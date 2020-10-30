@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//ENTITIES DITA 1.3 Topic XML Domain Test//EN" "topic-xmldomain-test.dtd">
+<topic id="xml-test-topic-01">
+  <title>XML Domain Test (DTD)</title>
+  <body>
+    <dl>
+      <dlentry>
+        <dt>numcharref</dt>
+        <dd>
+          <p><numcharref>x0a</numcharref>.</p>
+        </dd>
+      </dlentry>
+      <dlentry>
+        <dt>parameterentity</dt>
+        <dd>
+          <p><parameterentity>p.content</parameterentity></p>
+        </dd>
+      </dlentry>
+      <dlentry>
+        <dt>textentity</dt>
+        <dd>
+          <p><textentity>hi-d-att</textentity></p>
+        </dd>
+      </dlentry>
+      <dlentry>
+        <dt>xmlatt</dt>
+        <dd><xmlatt>class</xmlatt></dd>
+      </dlentry>
+      <dlentry>
+        <dt>xmlelement</dt>
+        <dd><xmlelement>foreign</xmlelement></dd>
+      </dlentry>
+      <dlentry>
+        <dt>xmlnsname</dt>
+        <dd><xmlnsname>http://www.w3.org/2000/svg</xmlnsname></dd>
+      </dlentry>
+      <dlentry>
+        <dt>xmlpi</dt>
+        <dd><xmlpi>dbhtml_background-color</xmlpi></dd>
+      </dlentry>
+      <dlentry>
+        <dt>markupname</dt>
+        <dd><markupname>p.attributes</markupname></dd>
+      </dlentry>
+    </dl>
+  </body>
+</topic>

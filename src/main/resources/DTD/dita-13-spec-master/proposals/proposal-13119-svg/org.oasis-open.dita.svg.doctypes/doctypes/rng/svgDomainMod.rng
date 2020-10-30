@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar 
+  xmlns="http://relaxng.org/ns/structure/1.0"
+  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+  xmlns:svg = "http://www.w3.org/2000/svg"
+  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  
+  
+  <define name="domains-atts-value" combine="choice">
+    <value>(topic svg-d)</value>
+  </define>
+
+  <define name="svg-d-foreign">
+    <ref name="svg_container.element"/> 
+  </define>
+
+  <define
+    name="svg_container.element">
+    <element
+      name="svg_container">
+      <ref
+        name="svg_container.attlist"/>
+      <ref
+        name="svg_container.content"/>
+    </element>
+  </define>
+  <define name="svg_container.attlist" combine="interleave">
+    <ref name="svg_container.attributes"/>
+  </define>
+  
+  <define
+    name="svg_container.attributes">
+    <ref
+      name="univ-atts"/>
+    <optional>
+      <attribute
+        name="outputclass"/>
+    </optional>
+  </define>
+  
+  <define name="svg_container.attlist" combine="interleave">
+    <ref name="global-atts"/>
+    <optional>
+      <attribute name="class" a:defaultValue="+ topic/foreign svg-d/svg_container "/>
+    </optional>
+  </define>
+  <define name="svg_container.content">
+    <choice>
+        <externalRef href="svg-full-1.2/Full-1.2.rng"/>      
+    </choice>
+  </define>
+  
+</grammar>

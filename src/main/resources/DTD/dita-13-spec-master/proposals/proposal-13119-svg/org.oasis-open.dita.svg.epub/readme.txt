@@ -1,0 +1,1 @@
+Plugin for EPUB support for SVG domain.
